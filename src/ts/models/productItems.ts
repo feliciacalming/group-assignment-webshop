@@ -1,6 +1,8 @@
-import { Bauble } from "./bauble";
+import { ChristmasBauble } from "./ChristmasBauble";
 
-export let productItems: Bauble[] = [
+//Listan med julgranskulor som finns i sortimentet
+
+export let productItems: ChristmasBauble[] = [
   {
     name: "Julgranskula röd",
     image:

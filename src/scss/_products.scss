@@ -1,2 +1,17 @@
 @use "mixins" as mix;
 @use "variables" as var;
+
+#productpage {
+  width: 100vw;
+}
+
+.product {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    width: 100px;
+  }
+}
