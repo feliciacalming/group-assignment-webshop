@@ -4,3 +4,42 @@
 
 @use "mixins" as mix;
 @use "variables" as var;
+
+body {
+  margin: 0;
+  font-family: var.$text-primary;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; // denna styling är bara för att jag ska se vart footer hamnar
+  justify-content: end;
+}
+
+footer {
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .contact {
+    display: block;
+    flex-direction: column;
+    padding: 10px;
+    margin: 0;
+
+    p,
+    h3,
+    h4 {
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .social {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      margin: 4px;
+    }
+  }
+}
