@@ -6,7 +6,7 @@ function displayProducts(productItems: ChristmasBauble[]) {
     let productContainer: HTMLDivElement = document.createElement("div");
     let productTitle: HTMLHeadingElement = document.createElement("h3");
     let productImage: HTMLImageElement = document.createElement("img");
-    let productPrice: HTMLParagraphElement = document.createElement("p");
+    let productPrice: HTMLParagraphElement = document.createElement("h5");
 
     productContainer.classList.add("product");
     productTitle.classList.add("product__title");
@@ -17,13 +17,13 @@ function displayProducts(productItems: ChristmasBauble[]) {
     productImage.alt = productItems[i].name;
 
     productTitle.innerHTML = productItems[i].name;
-    productPrice.innerHTML = productItems[i].price.toString();
+    productPrice.innerHTML = productItems[i].price.toString() + " kr";
 
     productContainer.appendChild(productImage);
     productContainer.appendChild(productTitle);
     productContainer.appendChild(productPrice);
 
-    (document.getElementById("productpage") as HTMLElement).appendChild(
+    (document.querySelector("main") as HTMLElement).appendChild(
       productContainer
     );
   }

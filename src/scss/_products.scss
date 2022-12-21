@@ -1,17 +1,35 @@
 @use "mixins" as mix;
 @use "variables" as var;
 
-#productpage {
-  width: 100vw;
+.productpage {
+  margin-top: 70px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
 }
 
 .product {
-  width: 500px;
-  height: 500px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(247, 228, 230);
+  width: 48%;
+  margin: 2px;
 
   &__image {
     width: 100px;
+  }
+
+  &__title {
+    margin-top: 15px;
+    margin-bottom: 5;
+    color: rgb(222, 72, 94);
+  }
+
+  &__price {
+    margin: 0;
   }
 }
