@@ -1,0 +1,43 @@
+.headingInCart {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    color: black;
+  }
+}
+
+.shoppingCartPage {
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+}
+
+.productInCart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(247, 228, 230);
+  width: 70%;
+  margin: 2px;
+
+  &__image {
+    width: 100px;
+  }
+
+  &__title {
+    margin-top: 15px;
+    margin-bottom: 5;
+    color: rgb(222, 72, 94);
+  }
+
+  &__price {
+    margin: 0;
+  }
+}
