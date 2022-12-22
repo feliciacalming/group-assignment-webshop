@@ -1,7 +1,7 @@
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
 
-let localStorageList: ChristmasBauble[] = [];
+export let listToLocalStorage: ChristmasBauble[] = [];
 
 function displayProducts(productItems: ChristmasBauble[]) {
   for (let i = 0; i < productItems.length; i++) {
@@ -39,10 +39,10 @@ function displayProducts(productItems: ChristmasBauble[]) {
     );
 
     productButton.addEventListener("click", () => {
-      localStorageList.push(productItems[i]);
+      listToLocalStorage.push(productItems[i]);
       localStorage.setItem(
         "product",
-        JSON.stringify(localStorageList)
+        JSON.stringify(listToLocalStorage)
       );
     });
   }
