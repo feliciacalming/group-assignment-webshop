@@ -7,7 +7,7 @@ export let productItems: ChristmasBauble[] = [
     name: "Julgranskula röd",
     image:
       "https://cdn.pixabay.com/photo/2016/11/10/18/57/bauble-1814941_1280.png",
-    price: 200,
+    price: 200
   },
 
   {
