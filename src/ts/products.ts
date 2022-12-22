@@ -1,20 +1,15 @@
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
 
-let localStorageList: ChristmasBauble[] = [];
+export let localStorageList: ChristmasBauble[] = [];
 
 function displayProducts(productItems: ChristmasBauble[]) {
   for (let i = 0; i < productItems.length; i++) {
-    let productContainer: HTMLDivElement =
-      document.createElement("div");
-    let productTitle: HTMLHeadingElement =
-      document.createElement("h3");
-    let productImage: HTMLImageElement =
-      document.createElement("img");
-    let productPrice: HTMLParagraphElement =
-      document.createElement("h5");
-    let productButton: HTMLButtonElement =
-      document.createElement("button");
+    let productContainer: HTMLDivElement = document.createElement("div");
+    let productTitle: HTMLHeadingElement = document.createElement("h3");
+    let productImage: HTMLImageElement = document.createElement("img");
+    let productPrice: HTMLParagraphElement = document.createElement("h5");
+    let productButton: HTMLButtonElement = document.createElement("button");
 
     productButton.classList.add("buttonAddToCart");
     productContainer.classList.add("product");
@@ -40,10 +35,7 @@ function displayProducts(productItems: ChristmasBauble[]) {
 
     productButton.addEventListener("click", () => {
       localStorageList.push(productItems[i]);
-      localStorage.setItem(
-        "product",
-        JSON.stringify(localStorageList)
-      );
+      localStorage.setItem("product", JSON.stringify(localStorageList));
     });
   }
 }

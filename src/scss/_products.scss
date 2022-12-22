@@ -15,16 +15,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(247, 228, 230);
   width: 48%;
   margin: 2px;
+  margin-bottom: 15px;
 
   &__image {
     width: 100px;
+    padding: 20px;
+    background-color: rgb(247, 228, 230);
   }
 
   &__title {
-    margin-top: 15px;
+    // margin-top: 15px;
     margin-bottom: 5;
     color: rgb(222, 72, 94);
   }
