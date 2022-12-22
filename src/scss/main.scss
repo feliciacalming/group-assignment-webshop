@@ -5,14 +5,16 @@
 @use "mixins" as mix;
 @use "variables" as var;
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 //här kan vi ha all 'main' styling, dvs all styling som är statisk och likadan på alla html-sidor
 body {
   margin: 0;
-  font-family: var.$text-primary;
-  // // height: 100vh;
-  // display: flex;
-  // flex-direction: column; // denna styling är bara för att jag ska se vart footer hamnar
-  // // justify-content: end;
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; // denna styling är bara för att jag ska se vart footer hamnar
+  //justify-content: end;
 }
 
 /* Header */
@@ -30,28 +32,29 @@ body {
     z-index: 2;
     font-size: 35px;
     position: absolute;
-    top: 13px;
+    top: 22px;
     right: 100px;
   }
   h1 {
     position: absolute;
-    top: -8px;
+    top: -2px;
     left: 10px;
   }
   .hamburger {
     width: 100%;
     z-index: 1;
     .menu-items {
-      display: flex;
       background: rgb(255, 0, 0);
       width: 100%;
       transform: translate(-150%);
-      display: flex;
       flex-direction: column;
       margin-left: -40px;
       padding-left: 40px;
       transition: transform 0.5s ease-in-out;
       text-align: center;
+      position: absolute;
+      top: 63px;
+      z-index: 2;
       li {
         margin-bottom: 1.2rem;
         font-size: 1.5rem;
@@ -88,8 +91,8 @@ body {
       float: right;
       height: 32px;
       width: 32px;
-      top: 13px;
-      right: 31px;
+      top: 21px;
+      right: 26px;
       z-index: 5;
       opacity: 0;
       cursor: pointer;
@@ -99,7 +102,7 @@ body {
       width: 32px;
       float: right;
       position: relative;
-      top: 17px;
+      top: 26px;
       left: 10px;
       z-index: 2;
       display: flex;
@@ -148,7 +151,9 @@ body {
   }
 }
 
+/* footer */
 footer {
+  color: var.$color-secondary;
   background-color: red;
   display: flex;
   flex-direction: row;
@@ -175,5 +180,58 @@ footer {
     p {
       margin: 4px;
     }
+  }
+}
+/* end footer */
+
+/* Offer Slider */
+.wrapper {
+  z-index: 2;
+  max-width: 100%;
+  overflow: hidden;
+  color: var.$color-secondary;
+}
+
+.marquee {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+  text-align: right;
+}
+
+.marquee p {
+  display: inline-block;
+  margin-block-start: 1px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(65%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+/* Offer */
+
+.offer{
+  display: flex;
+  position: relative;
+  width: 80%;
+  height: auto;
+  background-color: var.$christmas-green;
+  margin: 35px auto 10px auto;
+  border-radius: 10px;
+  color: white;
+  flex-direction: column;
+  padding-bottom: 5px;
+  h2{
+    margin: 10px auto;
+  }
+  img{
+    width: 80%;
+    margin: 0 auto;
   }
 }
