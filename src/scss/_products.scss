@@ -23,6 +23,8 @@
     width: 100px;
     padding: 20px;
     background-color: rgb(247, 228, 230);
+    border-radius: 25px;
+    border: 4px var.$christmas-green solid;
   }
 
   &__title {

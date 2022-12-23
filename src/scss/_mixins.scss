@@ -1,0 +1,21 @@
+@use "variables" as var;
+
+@mixin offer-panel{
+    display: flex;
+    position: relative;
+    width: 80%;
+    height: auto;
+    background-color: var.$christmas-green;
+    margin: 0px auto 50px auto;
+    border-radius: 10px;
+    color: white;
+    flex-direction: column;
+    padding-bottom: 5px;
+    h2{
+      margin: 10px auto;
+    }
+    img{
+      width: 80%;
+      margin: 0 auto;
+    }
+}

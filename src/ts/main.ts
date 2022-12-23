@@ -18,5 +18,4 @@ function displayCounter() {
         counterContainer
     );
 }
-console.log(listFromLocalStorage.length);
 displayCounter();
