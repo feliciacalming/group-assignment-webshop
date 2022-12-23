@@ -237,3 +237,21 @@ footer {
     margin: 0 auto;
   }
 }
+
+/* Counter */
+.counter{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: var.$christmas-green;
+  position: absolute;
+  top: 35px;
+  right: 83px;
+  z-index: 2;
+  line-height: 0px;
+  text-align: center;
+  p{
+    position: relative;
+    top: -2px;
+  }
+}
