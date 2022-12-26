@@ -1,6 +1,40 @@
 @use "mixins" as mix;
 @use "variables" as var;
 
+.productpage-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+}
+
+.assortment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 90%;
+
+  &__heading {
+    margin-bottom: 0;
+    font-weight: bold;
+  }
+
+  &__info {
+    margin-bottom: 30px;
+  }
+
+  &__amount {
+    align-self: flex-start;
+    margin-top: 0;
+    margin-bottom: 30px;
+    margin-left: 10px;
+  }
+}
+
 .productpage {
   margin-top: 70px;
   display: flex;
