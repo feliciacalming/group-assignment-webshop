@@ -1,3 +1,4 @@
+import { displayCounter } from "./main";
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { listToLocalStorage } from "./products";
 
@@ -88,7 +89,7 @@ function displayProductsSum() {
   let productsTotalContainer: HTMLDivElement = document.createElement("div");
   let productTotalText: HTMLHeadingElement = document.createElement("h3");
   let productInCartButtonClear: HTMLButtonElement =
-      document.createElement("button");
+    document.createElement("button");
 
   productsTotalContainer.classList.add("productsTotalContainer");
   productTotalText.classList.add("productTotalText");
@@ -105,7 +106,7 @@ function displayProductsSum() {
 function displayClearCartButton() {
   let productsClearContainer: HTMLDivElement = document.createElement("div");
   let productInCartButtonClear: HTMLButtonElement =
-      document.createElement("button");
+    document.createElement("button");
 
   productsClearContainer.classList.add("productsClearContainer");
   productInCartButtonClear.classList.add("productInCartButton__clear");
@@ -121,10 +122,10 @@ function displayClearCartButton() {
   productInCartButtonClear.addEventListener("click", () => {
     window.localStorage.clear();
     window.location.reload();
-    
   });
 }
 displayProductsInCart();
 displayProductsSum();
 displayClearCartButton();
+displayCounter();
 console.log("This is the total: ", sum);

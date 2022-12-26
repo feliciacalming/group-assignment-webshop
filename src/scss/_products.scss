@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   background-color: white;
-  color: black;
+  color: var.$color-secondary-dark;
 }
 
 .assortment {
@@ -19,6 +19,7 @@
   width: 90%;
 
   &__heading {
+    font-family: var.$text-secondary;
     margin-bottom: 0;
     font-weight: bold;
   }
@@ -49,25 +50,34 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 48%;
+  width: 43%;
   margin: 2px;
   margin-bottom: 15px;
 
   &__image {
     width: 100px;
     padding: 20px;
-    background-color: rgb(247, 228, 230);
+    background-color: var.$product-background;
     border-radius: 25px;
     border: 4px var.$christmas-green solid;
   }
 
   &__title {
-    // margin-top: 15px;
+    font-family: var.$text-secondary;
+    align-self: flex-start;
+    margin-left: 15px;
     margin-bottom: 5;
-    color: rgb(222, 72, 94);
   }
 
   &__price {
     margin: 0;
+    align-self: flex-start;
+    margin-left: 15px;
+    margin-bottom: 10px;
+  }
+
+  &__buttonAddToCart {
+    align-self: flex-start;
+    margin-left: 15px;
   }
 }
