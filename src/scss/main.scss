@@ -6,16 +6,38 @@
 @use "mixins" as mix;
 @use "variables" as var;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 //här kan vi ha all 'main' styling, dvs all styling som är statisk och likadan på alla html-sidor
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  color: white;
+  font-family: "Roboto", sans-serif;
   height: 100vh;
   display: flex;
   flex-direction: column; // denna styling är bara för att jag ska se vart footer hamnar
   //justify-content: end;
+  background: url(../assets/bg-index.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  a,
+  a:visited,
+  a:hover,
+  a:active {
+    color: inherit;
+    text-decoration: inherit;
+  }
+  button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
 }
 
 /* Header */
@@ -23,7 +45,7 @@ body {
   display: none;
 }
 .phone-nav {
-  color: var.$color-secondary;
+  color: var.$color-secondary-light;
   position: absolute;
   top: 0px;
   width: 100%;
@@ -152,9 +174,44 @@ body {
   }
 }
 
+/* content */
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  h1 {
+    margin: 0 auto;
+    width: 90%;
+    letter-spacing: 2px;
+    margin-top: 80px;
+    margin-bottom: 20px;
+  }
+  h2 {
+    margin: 20px auto;
+    letter-spacing: 1px;
+    width: 90%;
+  }
+  a {
+    background-color: red;
+    padding: 10px;
+    border-radius: 20px;
+    width: 160px;
+    margin: 0 auto;
+    transition: 300ms;
+    letter-spacing: 0.5px;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  .offer {
+    @include mix.offer-panel;
+  }
+}
+
 /* footer */
 footer {
-  color: var.$color-secondary;
+  color: var.$color-secondary-light;
   background-color: red;
   display: flex;
   flex-direction: row;
@@ -191,7 +248,8 @@ footer {
   z-index: 2;
   max-width: 100%;
   overflow: hidden;
-  color: var.$color-secondary;
+  color: var.$color-secondary-light;
+  position: absolute;
 }
 
 .marquee {
@@ -218,28 +276,8 @@ footer {
 
 /* Offer */
 
-.offer{
-  display: flex;
-  position: relative;
-  width: 80%;
-  height: auto;
-  background-color: var.$christmas-green;
-  margin: 35px auto 10px auto;
-  border-radius: 10px;
-  color: white;
-  flex-direction: column;
-  padding-bottom: 5px;
-  h2{
-    margin: 10px auto;
-  }
-  img{
-    width: 80%;
-    margin: 0 auto;
-  }
-}
-
 /* Counter */
-.counter{
+.counter {
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -250,7 +288,7 @@ footer {
   z-index: 2;
   line-height: 0px;
   text-align: center;
-  p{
+  p {
     position: relative;
     top: -2px;
   }

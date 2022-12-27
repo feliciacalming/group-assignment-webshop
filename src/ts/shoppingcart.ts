@@ -1,3 +1,4 @@
+import { displayCounter } from "./main";
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { listToLocalStorage } from "./products";
 
@@ -82,6 +83,9 @@ function displayProductsInCart() {
     (document.querySelector("main") as HTMLElement).appendChild(
       productInCartContainer
     );
+    (
+      document.querySelector(".shoppingCartPage") as HTMLElement
+    ).appendChild(productInCartContainer);
 
     //håller på med funktion för att ändra antalet av en viss produkt i varukorgen
     productInCartButtonPlus.addEventListener("click", () => {
@@ -123,6 +127,33 @@ function displayProductsSum() {
     productsTotalContainer
   );
 }
+
+function displayClearCartButton() {
+  let productsClearContainer: HTMLDivElement =
+    document.createElement("div");
+  let productInCartButtonClear: HTMLButtonElement =
+    document.createElement("button");
+
+  productsClearContainer.classList.add("productsClearContainer");
+  productInCartButtonClear.classList.add(
+    "productInCartButton__clear"
+  );
+
+  productInCartButtonClear.textContent = "Rensa varukorg";
+
+  productsClearContainer.appendChild(productInCartButtonClear);
+
+  (document.querySelector("main") as HTMLElement).appendChild(
+    productsClearContainer
+  );
+
+  productInCartButtonClear.addEventListener("click", () => {
+    window.localStorage.clear();
+    window.location.reload();
+  });
+}
 displayProductsInCart();
 displayProductsSum();
+displayClearCartButton();
+displayCounter();
 console.log("This is the total: ", sum);
