@@ -1,8 +1,9 @@
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
 import { displayCounter } from "./main";
+import { ProductsInCart } from "./models/ProductsInCart";
 
-export let listToLocalStorage: ChristmasBauble[] = [];
+export let listToLocalStorage: ProductsInCart[] = [];
 
 const assortmentContainer: HTMLDivElement = document.createElement("div");
 const assortmentHeading: HTMLHeadingElement = document.createElement("h2");
@@ -63,12 +64,55 @@ function displayProducts(productItems: ChristmasBauble[]) {
       productContainer
     );
 
+    //Den här anonyma funktionen funkade som den ska.
+
     productButton.addEventListener("click", () => {
-      listToLocalStorage.push(productItems[i]);
-      console.log(listToLocalStorage);
-      localStorage.setItem("product", JSON.stringify(listToLocalStorage));
-      displayCounter();
+      addToCart(productItems[i]);
+      // let itemToCart: ProductsInCart = new ProductsInCart(1, productItems[i]);
+      // if (
+      //   listToLocalStorage.find(
+      //     (productItems) => productItems.product.id === itemToCart.product.id
+      //   )
+      // ) {
+      //   //plussa på amount med 1
+      //   listToLocalStorage[i].amount++;
+      //   localStorage.setItem("product", JSON.stringify(listToLocalStorage));
+      // } else {
+      //   listToLocalStorage.push(itemToCart);
+      //   localStorage.setItem("product", JSON.stringify(listToLocalStorage));
+      // }
+
+      // console.log(listToLocalStorage);
+      // displayCounter();
     });
+  }
+}
+
+function addToCart(product: ChristmasBauble) {
+  let itemToCart: ProductsInCart = new ProductsInCart(1, product);
+
+  if (listToLocalStorage.length > 0) {
+    for (let i = 0; i < listToLocalStorage.length; i++) {
+      if (product.id === listToLocalStorage[i].product.id) {
+        // listToLocalStorage.find(
+        //   (productss) => productss.product.id === itemToCart.product.id
+        // )
+        // )
+        console.log(listToLocalStorage);
+        listToLocalStorage[i].amount++;
+        // localStorage.setItem("product", JSON.stringify(listToLocalStorage));
+        // itemToCart.amount++;
+
+        console.log("den hittade");
+      } else {
+        listToLocalStorage.push(itemToCart);
+        localStorage.setItem("product", JSON.stringify(listToLocalStorage));
+      }
+    }
+  } else {
+    console.log("hittade ingen av samma");
+    listToLocalStorage.push(itemToCart);
+    localStorage.setItem("product", JSON.stringify(listToLocalStorage));
   }
 }
 
