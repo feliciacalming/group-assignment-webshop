@@ -1,8 +1,9 @@
 import { displayCounter } from "./main";
 import { ChristmasBauble } from "./models/ChristmasBauble";
+import { ProductsInCart } from "./models/ProductsInCart";
 import { listToLocalStorage } from "./products";
 
-let listFromLocalStorage: ChristmasBauble[] = [];
+let listFromLocalStorage: ProductsInCart[] = [];
 let sum: number = 0;
 let amountOfProducts: number = 1;
 
@@ -11,12 +12,10 @@ function displayProductsInCart() {
     localStorage.getItem("product") || "[]"
   );
   listFromLocalStorage = listFromLocalStorage.map(
-    (product: ChristmasBauble) => {
-      return new ChristmasBauble(
-        product.name,
-        product.image,
-        product.price,
-        product.id
+  (product: ProductsInCart) => {
+    return new ProductsInCart(
+        product.amount
+        product.product
       );
     }
   );
@@ -42,7 +41,7 @@ function displayProductsInCart() {
       document.createElement("button");
     let productInCartButtonContainer: HTMLDivElement =
       document.createElement("div");
-    sum += listFromLocalStorage[i].price;
+    sum += listFromLocalStorage[i].product.price;
 
     productInCartButtonMinus.textContent = "-";
     productInCartButtonPlus.textContent = "+";
@@ -62,12 +61,12 @@ function displayProductsInCart() {
       "productInCartButtonContainer"
     );
 
-    productInCartImage.src = listFromLocalStorage[i].image;
-    productInCartImage.alt = listFromLocalStorage[i].name;
+    productInCartImage.src = listFromLocalStorage[i].product.image;
+    productInCartImage.alt = listFromLocalStorage[i].product.name;
 
-    productInCartTitle.innerHTML = listFromLocalStorage[i].name;
+    productInCartTitle.innerHTML = listFromLocalStorage[i].product.name;
     productInCartPrice.innerHTML =
-      listFromLocalStorage[i].price.toString() + " kr";
+      listFromLocalStorage[i].product.price.toString() + " kr";
     amountOfProductsText.innerHTML = amountOfProducts.toString();
 
     productInCartContainer.appendChild(productInCartTitle);
