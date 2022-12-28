@@ -1,30 +1,41 @@
 import { displayCounter } from "./main";
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { ProductsInCart } from "./models/ProductsInCart";
-import { listToLocalStorage } from "./products";
+import { addToCart, listToLocalStorage } from "./products";
 
 let listFromLocalStorage: ProductsInCart[] = [];
 let sum: number = 0;
 let amountOfProducts: number = 1;
 
-function displayProductsInCart() {
-  listFromLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
-  listFromLocalStorage = listFromLocalStorage.map((product: ProductsInCart) => {
-    return new ProductsInCart(product.amount, product.product);
-  });
+function displayProductsInCart(
+  listFromLocalStorage: ProductsInCart[]
+) {
+  listFromLocalStorage = JSON.parse(
+    localStorage.getItem("product") || "[]"
+  );
+  listFromLocalStorage = listFromLocalStorage.map(
+    (product: ProductsInCart) => {
+      return new ProductsInCart(product.amount, product.product);
+    }
+  );
 
   console.log(listFromLocalStorage);
 
   (document.querySelector("main") as HTMLElement).innerHTML = "";
 
   for (let i = 0; i < listFromLocalStorage.length; i++) {
-    let productInCartContainer: HTMLDivElement = document.createElement("div");
-    let productInCartTitle: HTMLHeadingElement = document.createElement("h3");
-    let productInCartImage: HTMLImageElement = document.createElement("img");
-    let productInCartPrice: HTMLParagraphElement = document.createElement("h5");
+    let productInCartContainer: HTMLDivElement =
+      document.createElement("div");
+    let productInCartTitle: HTMLHeadingElement =
+      document.createElement("h3");
+    let productInCartImage: HTMLImageElement =
+      document.createElement("img");
+    let productInCartPrice: HTMLParagraphElement =
+      document.createElement("h5");
     let productInCartButtonMinus: HTMLButtonElement =
       document.createElement("button");
-    let amountOfProductsText: HTMLSpanElement = document.createElement("span");
+    let amountOfProductsText: HTMLSpanElement =
+      document.createElement("span");
     let productInCartButtonPlus: HTMLButtonElement =
       document.createElement("button");
     let productInCartButtonContainer: HTMLDivElement =
@@ -39,54 +50,132 @@ function displayProductsInCart() {
     productInCartImage.classList.add("productInCart__image");
     productInCartPrice.classList.add("productInCart__price");
     amountOfProductsText.classList.add("productInCart__amount");
-    productInCartButtonMinus.classList.add("productInCartButton__minus");
-    productInCartButtonPlus.classList.add("productInCartButton__plus");
-    productInCartButtonContainer.classList.add("productInCartButtonContainer");
+    productInCartButtonMinus.classList.add(
+      "productInCartButton__minus"
+    );
+    productInCartButtonPlus.classList.add(
+      "productInCartButton__plus"
+    );
+    productInCartButtonContainer.classList.add(
+      "productInCartButtonContainer"
+    );
 
     productInCartImage.src = listFromLocalStorage[i].product.image;
     productInCartImage.alt = listFromLocalStorage[i].product.name;
 
-    productInCartTitle.innerHTML = listFromLocalStorage[i].product.name;
+    productInCartTitle.innerHTML =
+      listFromLocalStorage[i].product.name;
     productInCartPrice.innerHTML =
       listFromLocalStorage[i].product.price.toString() + " kr";
-    amountOfProductsText.innerHTML = amountOfProducts.toString();
+    amountOfProductsText.innerHTML =
+      listFromLocalStorage[i].amount.toString(); // det jag vill sätta som innerhtml måste vara positionen av produktens amount
+    // och eftersom listan renderas om/ laddas om , följer amount med i loopen.
 
     productInCartContainer.appendChild(productInCartTitle);
     productInCartContainer.appendChild(productInCartImage);
     productInCartContainer.appendChild(productInCartPrice);
     productInCartContainer.appendChild(productInCartButtonContainer);
-    productInCartButtonContainer.appendChild(productInCartButtonMinus);
+    productInCartButtonContainer.appendChild(
+      productInCartButtonMinus
+    );
     productInCartButtonContainer.appendChild(amountOfProductsText);
     productInCartButtonContainer.appendChild(productInCartButtonPlus);
 
     (document.querySelector("main") as HTMLElement).appendChild(
       productInCartContainer
     );
-    (document.querySelector(".shoppingCartPage") as HTMLElement).appendChild(
-      productInCartContainer
-    );
+    (
+      document.querySelector(".shoppingCartPage") as HTMLElement
+    ).appendChild(productInCartContainer);
 
-    //håller på med funktion för att ändra antalet av en viss produkt i varukorgen
     productInCartButtonPlus.addEventListener("click", () => {
-      let currentAmountOfProducts = parseInt(amountOfProductsText.innerHTML);
-      let addedAmount = currentAmountOfProducts + 1;
-      amountOfProductsText.innerHTML = addedAmount.toString();
+      console.log("You clicked on + ");
 
-      listFromLocalStorage = JSON.parse(
-        localStorage.getItem("product") || "[]"
-      );
-      listFromLocalStorage.push(listFromLocalStorage[i]);
-      localStorage.setItem("product", JSON.stringify(listFromLocalStorage));
+      addToCart(listFromLocalStorage[i].product);
+      //increaseQuantityByOne(listFromLocalStorage[i].product);
+    });
+
+    productInCartButtonMinus.addEventListener("click", () => {
+      console.log("You clicked on - ");
+
+      subtractFromCart(listFromLocalStorage[i]);
+      //increaseQuantityByOne(listFromLocalStorage[i].product);
     });
   }
+}
 
-  // displayProductsSum(); //kanske ska anropa funktionen här (eller i eventlistener?) för att den ska uppdatera totala summan varje gång man skapar html.
-  //kanske antingen behöver tömma displayproducts diven varje ggn om den ska ligga här.
+//håller på med funktion för att ändra antalet av en viss produkt i varukorgen
+/* 
+productInCartButtonPlus.addEventListener("click", () => {
+    let currentAmountOfProducts = parseInt(
+      amountOfProductsText.innerHTML
+    );
+    let addedAmount = currentAmountOfProducts + 1;
+    amountOfProductsText.innerHTML = addedAmount.toString();
+
+    listFromLocalStorage = JSON.parse(
+      localStorage.getItem("product") || "[]"
+    );
+    listFromLocalStorage.push(listFromLocalStorage[i]);
+    localStorage.setItem(
+      "product",
+      JSON.stringify(listFromLocalStorage)
+    );
+  });*/
+
+// displayProductsSum(); //kanske ska anropa funktionen här (eller i eventlistener?) för att den ska uppdatera totala summan varje gång man skapar html.
+//kanske antingen behöver tömma displayproducts diven varje ggn om den ska ligga här.
+
+// }
+
+// J: försöker skapa en funktion i rooten , men att tillhörande addeventlistener ligger i loopen
+// skickar med den christmasBauble som kunden klickat på..
+/*
+function increaseQuantityByOne(
+  clickedChristmasBauble: ChristmasBauble
+) {
+  if (listFromLocalStorage.length) {
+    for (const productInCart of listFromLocalStorage) {
+      if (productInCart.product.id === clickedChristmasBauble.id) {
+        const newAmount = productInCart.amount + 1;
+        productInCart.amount = newAmount;
+        console.log(newAmount);
+      }
+    }
+  } else {
+    let itemToCart: ProductsInCart = new ProductsInCart(
+      1,
+      clickedChristmasBauble
+    );
+    listFromLocalStorage.push(itemToCart);
+  }
+  localStorage.setItem(
+    "product",
+    JSON.stringify(listFromLocalStorage)
+  );
+  displayProductsInCart();
+}*/
+
+export function subtractFromCart(product: ProductsInCart) {
+  if (product.amount > 0) {
+    product.amount--; // minskar om det är mer än 1 av en produkt i varukorgen.
+    let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
+    localStorage.setItem("varukorg", savedCart); //uppdaterar localstorage med den nya listan
+  }
+  if (product.amount === 0) {
+    let index = listFromLocalStorage.indexOf(product); // gör en variabel av listpositioonen som jag vill radera.
+    listFromLocalStorage.splice(index, 1); // ta bort produkten ur varukorgen om amount blir noll..
+    let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
+    localStorage.setItem("varukorg", savedCart); //uppdaterar localstorage med den nya listan
+  }
+  displayProductsInCart(listFromLocalStorage); // måste rendera om sidan och hela tiden (varje gång vi gör ändringar) skicka med den senaste listan.
 }
 
 function displayProductsSum() {
-  let productsTotalContainer: HTMLDivElement = document.createElement("div");
-  let productTotalText: HTMLHeadingElement = document.createElement("h3");
+  let productsTotalContainer: HTMLDivElement =
+    document.createElement("div");
+  let productTotalText: HTMLHeadingElement =
+    document.createElement("h3");
 
   productsTotalContainer.classList.add("productsTotalContainer");
   productTotalText.classList.add("productTotalText");
@@ -101,12 +190,15 @@ function displayProductsSum() {
 }
 
 function displayClearCartButton() {
-  let productsClearContainer: HTMLDivElement = document.createElement("div");
+  let productsClearContainer: HTMLDivElement =
+    document.createElement("div");
   let productInCartButtonClear: HTMLButtonElement =
     document.createElement("button");
 
   productsClearContainer.classList.add("productsClearContainer");
-  productInCartButtonClear.classList.add("productInCartButton__clear");
+  productInCartButtonClear.classList.add(
+    "productInCartButton__clear"
+  );
 
   productInCartButtonClear.textContent = "Rensa varukorg";
 
@@ -121,7 +213,8 @@ function displayClearCartButton() {
     window.location.reload();
   });
 }
-displayProductsInCart();
+
+displayProductsInCart(listFromLocalStorage);
 displayProductsSum();
 displayClearCartButton();
 displayCounter();
