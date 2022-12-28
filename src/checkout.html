@@ -6,13 +6,26 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0" />
-    <script src="ts/checkout.ts" defer type="module"></script>
-    <link href="./scss/main.scss" rel="stylesheet" />
+    <script src="ts/main.ts" defer type="module"></script>
+    <!--ikoner bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
     <!-- Fontawesome icons -->
     <script src="https://kit.fontawesome.com/62ffc96575.js" crossorigin="anonymous"></script>
-    <title>Checkout</title>
+    <link href="./scss/main.scss" rel="stylesheet" />
+    <title>Betalningsportal</title>
   </head>
   <body>
+
+    <div class="wrapper">
+      <div class="marquee">
+        <p>
+          FRI FRAKT GÄLLER FRAM TILL JULDAGEN - BESTÄLL INNAN DEN 25 - PASSA PÅ ATT KÖPA NU
+        </p>
+      </div>
+    </div>
+
     <div class="phone-nav">
       <h1>JULKUL</h1>
       <i class="fa-solid fa-cart-shopping"></i>
@@ -25,7 +38,7 @@
               <span class="line line3"></span>
             </div>  
           <div class="menu-items">
-            <li><a href="">Produkter</a></li>
+            <li><a href="products.html">Produkter</a></li>
             <li><a href="">Om oss</a></li>
             <li><a href="">Kontakt</a></li>
           </div>
@@ -33,6 +46,25 @@
       </div>
     </div>
 
+    <div class="content">
+      <h1>BETALA</h1>
+      <div class="checkout">
+        <form action="">
+          <label for="fname" class="fname-text">First name:</label>
+          <input type="text" class="fname" name="fname" placeholder="John">
+          <label for="lname" class="lname-text">Last name:</label>
+          <input type="text" class="lname" name="lname" placeholder="Doe">
+
+          <label for="cc" class="cc-text">Credit Card:</label>
+          <input type="number" class="cc" name="cc" placeholder="xxxx xxxx xxxx xxxx">
+          <label for="ccv" class="ccv-text">CCV:</label>
+          <input type="number" class="ccv" name="ccv" placeholder="xxx">
+          <input type="submit" name="submit" value="Submit">
+        </form>
+      </div>
+      
+    </div>
+    
     <footer>
       <div class="contact">
         <h3>Vi finns här!</h3>
