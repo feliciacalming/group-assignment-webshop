@@ -117,7 +117,7 @@ function displayProducts(productItems: ChristmasBauble[]) {
 
 //FUNKTION #2
 
-function addToCart(product: ChristmasBauble) {
+export function addToCart(product: ChristmasBauble) {
   let itemToCart: ProductsInCart = new ProductsInCart(1, product);
   let found = false;
 
