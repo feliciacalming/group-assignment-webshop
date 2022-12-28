@@ -13,21 +13,26 @@ const assortmentInfoText: HTMLParagraphElement =
   document.createElement("p");
 const assortmentAmount: HTMLParagraphElement =
   document.createElement("h5");
+const filterButton: HTMLButtonElement =
+  document.createElement("button");
 
 assortmentHeading.innerHTML = "Julgranskulor";
 assortmentInfoText.innerHTML =
   "Alla våra fantastiska julkulor är gjorda av glas av högsta kvalité. Alla produkter är munblåsta och handmålade, vilket gör varje julgranskula unik.";
 assortmentAmount.innerHTML =
   "Visar " + productItems.length.toString() + " produkter";
+filterButton.innerHTML = "Filter";
 
 assortmentContainer.classList.add("assortment");
 assortmentHeading.classList.add("assortment__heading");
 assortmentInfoText.classList.add("assortment__info");
 assortmentAmount.classList.add("assortment__amount");
+filterButton.classList.add("assortment__button");
 
 assortmentContainer.appendChild(assortmentHeading);
 assortmentContainer.appendChild(assortmentInfoText);
 assortmentContainer.appendChild(assortmentAmount);
+assortmentContainer.appendChild(filterButton);
 (document.querySelector("main") as HTMLElement).appendChild(
   assortmentContainer
 );
@@ -79,6 +84,7 @@ function displayProducts(productItems: ChristmasBauble[]) {
 
     productButton.addEventListener("click", () => {
       addToCart(productItems[i]);
+      let test = "hej";
       //   let itemToCart: ProductsInCart = new ProductsInCart(1, productItems[i]);
       //   if (
       //     listToLocalStorage.find(
@@ -98,26 +104,7 @@ function displayProducts(productItems: ChristmasBauble[]) {
   }
 }
 
-///FUNKTION #3
-
-// function addToCart(product: ChristmasBauble) {
-//   if (listToLocalStorage.length) {
-//     for (const productInCart of listToLocalStorage) {
-//       if (productInCart.product.id === product.id) {
-//         let newAmount = productInCart.amount + 1;
-//         productInCart.amount = newAmount;
-//       }
-//     }
-//   } else {
-//     let itemToCart: ProductsInCart = new ProductsInCart(1, product);
-//     listToLocalStorage.push(itemToCart);
-
-//   }
-//   localStorage.setItem("product", JSON.stringify(listToLocalStorage));
-
-//FUNKTION #2
-
-export function addToCart(product: ChristmasBauble) {
+function addToCart(product: ChristmasBauble) {
   let itemToCart: ProductsInCart = new ProductsInCart(1, product);
   let found = false;
 
@@ -149,6 +136,25 @@ export function addToCart(product: ChristmasBauble) {
     );
   }
 }
+
+///FUNKTION #3
+
+// function addToCart(product: ChristmasBauble) {
+//   if (listToLocalStorage.length) {
+//     for (const productInCart of listToLocalStorage) {
+//       if (productInCart.product.id === product.id) {
+//         let newAmount = productInCart.amount + 1;
+//         productInCart.amount = newAmount;
+//       }
+//     }
+//   } else {
+//     let itemToCart: ProductsInCart = new ProductsInCart(1, product);
+//     listToLocalStorage.push(itemToCart);
+
+//   }
+//   localStorage.setItem("product", JSON.stringify(listToLocalStorage));
+
+//FUNKTION #2
 
 displayCounter();
 displayProducts(productItems);

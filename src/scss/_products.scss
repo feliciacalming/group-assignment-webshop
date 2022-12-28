@@ -22,10 +22,20 @@
     font-family: var.$text-secondary;
     margin-bottom: 0;
     font-weight: bold;
+
+    @include mix.desktop {
+      margin-top: 40px;
+      font-size: 40px;
+    }
   }
 
   &__info {
     margin-bottom: 30px;
+
+    @include mix.desktop {
+      width: 60%;
+      font-size: 20px;
+    }
   }
 
   &__amount {
@@ -33,6 +43,16 @@
     margin-top: 0;
     margin-bottom: 30px;
     margin-left: 10px;
+
+    @include mix.desktop {
+      margin-top: 50px;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+  }
+
+  &__button {
+    margin-left: 80%;
   }
 }
 
@@ -54,30 +74,64 @@
   margin: 2px;
   margin-bottom: 15px;
 
+  @include mix.desktop {
+    width: 20%;
+    margin: 2px 30px 30px 30px;
+  }
+
   &__image {
     width: 100px;
     padding: 20px;
     background-color: var.$product-background;
-    border-radius: 25px;
-    border: 4px var.$christmas-green solid;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(254, 221, 221, 0.702);
+    }
+
+    @include mix.desktop {
+      width: 300px;
+    }
   }
 
   &__title {
     font-family: var.$text-secondary;
-    align-self: flex-start;
-    margin-left: 15px;
+    margin-right: 20px;
     margin-bottom: 5;
+
+    @include mix.desktop {
+      scale: 1.2;
+      align-self: flex-start;
+      padding-left: 5px;
+    }
   }
 
   &__price {
-    margin: 0;
-    align-self: flex-start;
-    margin-left: 15px;
+    margin-top: 0;
+    margin-right: 102px;
     margin-bottom: 10px;
+
+    @include mix.desktop {
+      scale: 1.2;
+      align-self: flex-start;
+      margin-left: -6px;
+      padding-left: 5px;
+    }
   }
 
   &__buttonAddToCart {
-    align-self: flex-start;
-    margin-left: 15px;
+    margin-right: 33px;
+    border-style: none;
+    padding: 3px 10px 3px 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(227, 95, 115);
+    cursor: pointer;
+
+    @include mix.desktop {
+      scale: 1.2;
+      align-self: flex-start;
+      margin-left: 6px;
+    }
   }
 }
