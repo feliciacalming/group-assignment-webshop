@@ -79,69 +79,76 @@ function displayProducts(productItems: ChristmasBauble[]) {
 
     productButton.addEventListener("click", () => {
       addToCart(productItems[i]);
-      // let itemToCart: ProductsInCart = new ProductsInCart(1, productItems[i]);
-      // if (
-      //   listToLocalStorage.find(
-      //     (productItems) => productItems.product.id === itemToCart.product.id
-      //   )
-      // ) {
-      //   //plussa på amount med 1
-      //   listToLocalStorage[i].amount++;
-      //   localStorage.setItem("product", JSON.stringify(listToLocalStorage));
-      // } else {
-      //   listToLocalStorage.push(itemToCart);
-      //   localStorage.setItem("product", JSON.stringify(listToLocalStorage));
-      // }
+      //   let itemToCart: ProductsInCart = new ProductsInCart(1, productItems[i]);
+      //   if (
+      //     listToLocalStorage.find(
+      //       (productsInLS) => productsInLS.product.id === itemToCart.product.id
+      //     )
+      //   ) {
+      //     listToLocalStorage[i].amount++;
+      //     localStorage.setItem("product", JSON.stringify(listToLocalStorage));
+      //   } else {
+      //     listToLocalStorage.push(itemToCart);
+      //     localStorage.setItem("product", JSON.stringify(listToLocalStorage));
+      //   }
 
-      // console.log(listToLocalStorage);
-      // displayCounter();
+      //   console.log(listToLocalStorage);
+      //   displayCounter();
     });
   }
 }
 
+///FUNKTION #3
+
+// function addToCart(product: ChristmasBauble) {
+//   if (listToLocalStorage.length) {
+//     for (const productInCart of listToLocalStorage) {
+//       if (productInCart.product.id === product.id) {
+//         let newAmount = productInCart.amount + 1;
+//         productInCart.amount = newAmount;
+//       }
+//     }
+//   } else {
+//     let itemToCart: ProductsInCart = new ProductsInCart(1, product);
+//     listToLocalStorage.push(itemToCart);
+
+//   }
+//   localStorage.setItem("product", JSON.stringify(listToLocalStorage));
+
+//FUNKTION #2
+
 function addToCart(product: ChristmasBauble) {
-  /* if (listToLocalStorage.length) {
-    for (const productInCart of listToLocalStorage) {
-      if (productInCart.product.id === product.id) {
-        const newAmount = productInCart.amount + 1;
-        productInCart.amount = newAmount;
+  let itemToCart: ProductsInCart = new ProductsInCart(1, product);
+  let found = false;
+
+  if (listToLocalStorage.length === 0) {
+    found = false;
+  } else {
+    for (let i = 0; i < listToLocalStorage.length; i++) {
+      if (
+        listToLocalStorage[i].product.id === itemToCart.product.id
+      ) {
+        listToLocalStorage[i].amount++;
+        localStorage.setItem(
+          "product",
+          JSON.stringify(listToLocalStorage)
+        );
+        console.log("den finns i listan");
+        found = true;
+        return;
       }
     }
-  } else {*/
-  let itemToCart: ProductsInCart = new ProductsInCart(1, product);
-  listToLocalStorage.push(itemToCart);
+  }
+
+  if (found === false) {
+    console.log("hittar inte id");
+    listToLocalStorage.push(itemToCart);
+    localStorage.setItem(
+      "product",
+      JSON.stringify(listToLocalStorage)
+    );
+  }
 }
-localStorage.setItem("product", JSON.stringify(listToLocalStorage));
-
-// if (listToLocalStorage.length > 0) {
-//   for (let i = 0; i < listToLocalStorage.length; i++) {
-//     if (product.id === listToLocalStorage[i].product.id) {
-//       // listToLocalStorage.find(
-//       //   (productss) => productss.product.id === itemToCart.product.id
-//       // )
-//       // )
-//       console.log(listToLocalStorage);
-//       listToLocalStorage[i].amount++;
-//       // localStorage.setItem("product", JSON.stringify(listToLocalStorage));
-//       // itemToCart.amount++;
-
-//       console.log("den hittade");
-//     } else {
-//       listToLocalStorage.push(itemToCart);
-//       localStorage.setItem(
-//         "product",
-//         JSON.stringify(listToLocalStorage)
-//       );
-//     }
-//   }
-// } else {
-//   console.log("hittade ingen av samma");
-//   listToLocalStorage.push(itemToCart);
-//   localStorage.setItem(
-//     "product",
-//     JSON.stringify(listToLocalStorage)
-//   );
-// }
 
 displayCounter();
 displayProducts(productItems);
