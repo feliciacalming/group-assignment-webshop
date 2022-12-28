@@ -7,16 +7,13 @@ let listFromLocalStorage: ProductsInCart[] = [];
 let sum: number = 0;
 let amountOfProducts: number = 1;
 
-function displayProductsInCart() {
+function displayProductsInCart(){
   listFromLocalStorage = JSON.parse(
     localStorage.getItem("product") || "[]"
   );
   listFromLocalStorage = listFromLocalStorage.map(
-  (product: ProductsInCart) => {
-    return new ProductsInCart(
-        product.amount
-        product.product
-      );
+    (product: ProductsInCart) => {
+      return new ProductsInCart(product.amount, product.product);
     }
   );
 
@@ -64,7 +61,8 @@ function displayProductsInCart() {
     productInCartImage.src = listFromLocalStorage[i].product.image;
     productInCartImage.alt = listFromLocalStorage[i].product.name;
 
-    productInCartTitle.innerHTML = listFromLocalStorage[i].product.name;
+    productInCartTitle.innerHTML =
+      listFromLocalStorage[i].product.name;
     productInCartPrice.innerHTML =
       listFromLocalStorage[i].product.price.toString() + " kr";
     amountOfProductsText.innerHTML = amountOfProducts.toString();
@@ -86,27 +84,60 @@ function displayProductsInCart() {
       document.querySelector(".shoppingCartPage") as HTMLElement
     ).appendChild(productInCartContainer);
 
-    //håller på med funktion för att ändra antalet av en viss produkt i varukorgen
-    productInCartButtonPlus.addEventListener("click", () => {
-      let currentAmountOfProducts = parseInt(
-        amountOfProductsText.innerHTML
-      );
-      let addedAmount = currentAmountOfProducts + 1;
-      amountOfProductsText.innerHTML = addedAmount.toString();
+    productInCartButtonPlus.addEventListener
+      ("click", () => {
+        console.log("You clicked on + ");
 
-      listFromLocalStorage = JSON.parse(
-        localStorage.getItem("product") || "[]"
-      );
-      listFromLocalStorage.push(listFromLocalStorage[i]);
-      localStorage.setItem(
-        "product",
-        JSON.stringify(listFromLocalStorage)
-      );
-    });
+        increaseQuantityByOne(listFromLocalStorage[i].product);
   }
+}
+  //håller på med funktion för att ändra antalet av en viss produkt i varukorgen
+  /* productInCartButtonPlus.addEventListener("click", () => {
+    let currentAmountOfProducts = parseInt(
+      amountOfProductsText.innerHTML
+    );
+    let addedAmount = currentAmountOfProducts + 1;
+    amountOfProductsText.innerHTML = addedAmount.toString();
+
+    listFromLocalStorage = JSON.parse(
+      localStorage.getItem("product") || "[]"
+    );
+    listFromLocalStorage.push(listFromLocalStorage[i]);
+    localStorage.setItem(
+      "product",
+      JSON.stringify(listFromLocalStorage)
+    );
+  });*/
 
   // displayProductsSum(); //kanske ska anropa funktionen här (eller i eventlistener?) för att den ska uppdatera totala summan varje gång man skapar html.
   //kanske antingen behöver tömma displayproducts diven varje ggn om den ska ligga här.
+
+}
+
+// J: försöker skapa en funktion i rooten , men att tillhörande addeventlistener ligger i loopen
+// skickar med den christmasBauble som kunden klickat på..
+function increaseQuantityByOne(
+  clickedChristmasBauble:ChristmasBauble) {
+  if (listFromLocalStorage.length) {
+    for (const productInCart of listFromLocalStorage) {
+      if (productInCart.product.id === clickedChristmasBauble.id) {
+        const newAmount = productInCart.amount + 1;
+        productInCart.amount = newAmount;
+        console.log(newAmount);
+      }
+    }
+  } else {
+    let itemToCart: ProductsInCart = new ProductsInCart(
+      1,
+      clickedChristmasBauble
+    );
+    listFromLocalStorage.push(itemToCart);
+  }
+  localStorage.setItem(
+    "product",
+    JSON.stringify(listFromLocalStorage)
+  );
+  displayProductsInCart();
 }
 
 function displayProductsSum() {
@@ -151,6 +182,7 @@ function displayClearCartButton() {
     window.location.reload();
   });
 }
+
 displayProductsInCart();
 displayProductsSum();
 displayClearCartButton();
