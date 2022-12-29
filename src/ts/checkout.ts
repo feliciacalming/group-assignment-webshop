@@ -58,6 +58,8 @@ function displayPaymentGateway(){
 
     submitButton.setAttribute("type", "submit");
     submitButton.setAttribute("name", "submit");
+
+    checkoutForm.setAttribute("onsubmit", "return false");
     
 
     checkoutContainer.appendChild(checkoutForm);
@@ -74,6 +76,18 @@ function displayPaymentGateway(){
     (document.querySelector(".content") as HTMLElement).appendChild(
         checkoutContainer
     );
+
+    if(checkoutForm.addEventListener){
+        checkoutForm.addEventListener("submit", callback, false);  //Modern browsers
+    }else if(checkoutForm.attachEvent){
+        checkoutForm.attachEvent('onsubmit', callback);            //Old IE
+    }
+    
+    function callback(){
+        setTimeout(function(){
+            alert("Köpet har genomförts!");
+        },500);
+    }
 }
 displayPaymentGateway();
 //displayCounter();
