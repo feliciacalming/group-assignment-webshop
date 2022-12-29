@@ -104,7 +104,7 @@ function displayProducts(productItems: ChristmasBauble[]) {
   }
 }
 
-function addToCart(product: ChristmasBauble) {
+export function addToCart(product: ChristmasBauble) {
   let itemToCart: ProductsInCart = new ProductsInCart(1, product);
   let found = false;
 
