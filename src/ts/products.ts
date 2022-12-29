@@ -37,6 +37,7 @@ assortmentContainer.appendChild(filterButton);
 //lägger till produkterna från local storage i listan när sidan laddas om. annars börjar varukorg-countern räkna om från
 //början när man lägger till en ny produkt efter att ha laddat om sidan, trots att det är flera objekt i local storage.
 listToLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
+//hämtar man här så kmr den alltid ligga kvar
 
 function displayProducts(productItems: ChristmasBauble[]) {
   for (let i = 0; i < productItems.length; i++) {
@@ -92,7 +93,11 @@ function displayProducts(productItems: ChristmasBauble[]) {
   }
 }
 
-function addToCart(product: ChristmasBauble) {
+export function addToCart(product: ChristmasBauble) {
+  //hämta listan från LS här
+  // let listan = ProductsInCart
+  // listan = parse localstorage get item
+
   let itemToCart: ProductsInCart = new ProductsInCart(1, product);
   let found = false;
 
