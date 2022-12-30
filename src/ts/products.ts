@@ -2,6 +2,7 @@ import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
 import { displayCounter } from "./main";
 import { ProductsInCart } from "./models/ProductsInCart";
+import { displayProductdetails } from "./productdetails";
 
 console.log("hej");
 
@@ -77,10 +78,11 @@ function displayProducts(productItems: ChristmasBauble[]) {
     productContainer.appendChild(productPrice);
     productContainer.appendChild(productButton);
 
-    productContainer.addEventListener("click", () => {
-      productItems[i];
-      document.location.href = "productdetails.html";
-    });
+    // productContainer.addEventListener("click", () => {
+    //   displayProductdetails(productItems[i]);
+
+    //   document.location.href = "productdetails.html";
+    // });
 
     (document.querySelector("main") as HTMLElement).appendChild(
       productContainer

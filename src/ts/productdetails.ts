@@ -4,72 +4,44 @@ import { productItems } from "./models/productItems";
 import { ProductsInCart } from "./models/ProductsInCart";
 import { addToCart } from "./products";
 
-const assortmentDetailContainer: HTMLDivElement =
-  document.createElement("div");
-const assortmentDetailHeading: HTMLHeadingElement =
-  document.createElement("h2");
-const assortmentDetailInfoText: HTMLParagraphElement =
-  document.createElement("p");
-const assortmentAmount: HTMLParagraphElement =
-  document.createElement("h5");
+export function displayProductdetails() {
+  let productDetailContainer: HTMLDivElement =
+    document.createElement("div");
+  let productDetailTitle: HTMLHeadingElement =
+    document.createElement("h5");
+  let productDetailImage: HTMLImageElement =
+    document.createElement("img");
+  let productDescribtion: HTMLParagraphElement =
+    document.createElement("p");
+  let productDetailPrice: HTMLParagraphElement =
+    document.createElement("h5");
+  let productDetailButton: HTMLButtonElement =
+    document.createElement("button");
 
-assortmentDetailHeading.innerHTML = "Julgranskula";
-assortmentDetailInfoText.innerHTML =
-  "Handmålad julkula i glas. Band eller snöre ingår ej.";
-assortmentAmount.innerHTML =
-  "Visar " + productItems.length.toString() + " produkter";
+  productDetailContainer.classList.add("productdetail");
+  productDetailTitle.classList.add("productdetail__title");
+  productDetailImage.classList.add("productdetail__image");
+  productDescribtion.classList.add("productdetail__paragraph");
+  productDetailPrice.classList.add("productdetail__price");
+  productDetailButton.classList.add("productdetail__buttonAddToCart");
 
-assortmentDetailContainer.classList.add("assortment");
-assortmentDetailHeading.classList.add("assortment__heading");
-assortmentDetailInfoText.classList.add("assortment__info");
-assortmentAmount.classList.add("assortment__amount");
+  productDetailImage.src = productItems[0].image;
+  productDetailImage.alt = productItems[0].name;
 
-assortmentDetailContainer.appendChild(assortmentDetailHeading);
-assortmentDetailContainer.appendChild(assortmentDetailInfoText);
-assortmentDetailContainer.appendChild(assortmentAmount);
+  productDescribtion.innerText = productItems[0].description;
+  productDetailTitle.innerHTML = productItems[0].name;
+  productDetailPrice.innerHTML =
+    productItems[0].price.toString() + " kr";
+  productDetailButton.innerHTML = "Lägg i varukorg";
 
-(document.querySelector("main") as HTMLElement).appendChild(
-  assortmentDetailContainer
-);
+  productDetailContainer.appendChild(productDetailImage);
+  productDetailContainer.appendChild(productDetailTitle);
+  productDetailContainer.appendChild(productDescribtion);
+  productDetailContainer.appendChild(productDetailPrice);
+  productDetailContainer.appendChild(productDetailButton);
 
-function displayProductdetails(productItems: ChristmasBauble[]) {
-  for (let i = 0; i < productItems.length; i) {
-    let productContainer: HTMLDivElement =
-      document.createElement("div");
-    let productTitle: HTMLHeadingElement =
-      document.createElement("h5");
-    let productImage: HTMLImageElement =
-      document.createElement("img");
-    let productPrice: HTMLParagraphElement =
-      document.createElement("h5");
-    let productButton: HTMLButtonElement =
-      document.createElement("button");
-
-    productContainer.classList.add("product");
-    productTitle.classList.add("product__title");
-    productImage.classList.add("product__image");
-    productPrice.classList.add("product__price");
-    productButton.classList.add("product__buttonAddToCart");
-
-    productImage.src = productItems[i].image;
-    productImage.alt = productItems[i].name;
-
-    productTitle.innerHTML = productItems[i].name;
-    productPrice.innerHTML = productItems[i].price.toString() + " kr";
-    productButton.innerHTML = "Lägg i varukorg";
-
-    productContainer.appendChild(productImage);
-    productContainer.appendChild(productTitle);
-    productContainer.appendChild(productPrice);
-    productContainer.appendChild(productButton);
-
-    (document.querySelector("main") as HTMLElement).appendChild(
-      productContainer
-    );
-
-    productButton.addEventListener("click", () => {
-      addToCart(productItems[i]);
-    });
-  }
+  (document.querySelector("main") as HTMLElement).appendChild(
+    productDetailContainer
+  );
 }
-displayProductdetails(productItems);
+displayProductdetails();
