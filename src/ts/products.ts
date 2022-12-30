@@ -1,9 +1,11 @@
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
-import { displayCounter } from "./main";
+// import { displayCounter } from "./main";
 import { ProductsInCart } from "./models/ProductsInCart";
 
-export let listToLocalStorage: ProductsInCart[] = [];
+console.log("hej");
+
+// export
 
 const assortmentContainer: HTMLDivElement = document.createElement("div");
 const assortmentHeading: HTMLHeadingElement = document.createElement("h2");
@@ -36,7 +38,7 @@ assortmentContainer.appendChild(filterButton);
 
 //lägger till produkterna från local storage i listan när sidan laddas om. annars börjar varukorg-countern räkna om från
 //början när man lägger till en ny produkt efter att ha laddat om sidan, trots att det är flera objekt i local storage.
-listToLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
+// listToLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
 //hämtar man här så kmr den alltid ligga kvar
 
 function displayProducts(productItems: ChristmasBauble[]) {
@@ -97,6 +99,10 @@ export function addToCart(product: ChristmasBauble) {
   //hämta listan från LS här
   // let listan = ProductsInCart
   // listan = parse localstorage get item
+  // let listToLocalStorage: ProductsInCart[] = [];
+  // listToLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
+  let listToLocalStorage: ProductsInCart[] = [];
+  listToLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
 
   let itemToCart: ProductsInCart = new ProductsInCart(1, product);
   let found = false;
@@ -141,5 +147,5 @@ export function addToCart(product: ChristmasBauble) {
 
 //FUNKTION #2
 
-displayCounter();
+// displayCounter();
 displayProducts(productItems);
