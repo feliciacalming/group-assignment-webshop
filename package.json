@@ -6,7 +6,7 @@
     "parcel": "^2.8.2"
   },
   "scripts": {
-    "start": "npx parcel src/index.html src/products.html src/index.html src/shoppingcart.html src/checkout.html"
+    "start": "npx parcel src/index.html src/products.html src/productdetails.html src/shoppingcart.html src/checkout.html"
   },
   "dependencies": {
     "@parcel/config-default": "^2.8.2"
