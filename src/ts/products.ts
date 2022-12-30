@@ -5,11 +5,16 @@ import { ProductsInCart } from "./models/ProductsInCart";
 
 export let listToLocalStorage: ProductsInCart[] = [];
 
-const assortmentContainer: HTMLDivElement = document.createElement("div");
-const assortmentHeading: HTMLHeadingElement = document.createElement("h2");
-const assortmentInfoText: HTMLParagraphElement = document.createElement("p");
-const assortmentAmount: HTMLParagraphElement = document.createElement("h5");
-const filterButton: HTMLButtonElement = document.createElement("button");
+const assortmentContainer: HTMLDivElement =
+  document.createElement("div");
+const assortmentHeading: HTMLHeadingElement =
+  document.createElement("h2");
+const assortmentInfoText: HTMLParagraphElement =
+  document.createElement("p");
+const assortmentAmount: HTMLParagraphElement =
+  document.createElement("h5");
+const filterButton: HTMLButtonElement =
+  document.createElement("button");
 
 assortmentHeading.innerHTML = "Julgranskulor";
 assortmentInfoText.innerHTML =
@@ -36,15 +41,23 @@ assortmentContainer.appendChild(filterButton);
 
 //lägger till produkterna från local storage i listan när sidan laddas om. annars börjar varukorg-countern räkna om från
 //början när man lägger till en ny produkt efter att ha laddat om sidan, trots att det är flera objekt i local storage.
-listToLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
+listToLocalStorage = JSON.parse(
+  localStorage.getItem("product") || "[]"
+);
+//hämtar man här så kmr den alltid ligga kvar
 
 function displayProducts(productItems: ChristmasBauble[]) {
   for (let i = 0; i < productItems.length; i++) {
-    let productContainer: HTMLDivElement = document.createElement("div");
-    let productTitle: HTMLHeadingElement = document.createElement("h5");
-    let productImage: HTMLImageElement = document.createElement("img");
-    let productPrice: HTMLParagraphElement = document.createElement("h5");
-    let productButton: HTMLButtonElement = document.createElement("button");
+    let productContainer: HTMLDivElement =
+      document.createElement("div");
+    let productTitle: HTMLHeadingElement =
+      document.createElement("h5");
+    let productImage: HTMLImageElement =
+      document.createElement("img");
+    let productPrice: HTMLParagraphElement =
+      document.createElement("h5");
+    let productButton: HTMLButtonElement =
+      document.createElement("button");
 
     productContainer.classList.add("product");
     productTitle.classList.add("product__title");
@@ -93,6 +106,10 @@ function displayProducts(productItems: ChristmasBauble[]) {
 }
 
 export function addToCart(product: ChristmasBauble) {
+  //hämta listan från LS här
+  // let listan = ProductsInCart
+  // listan = parse localstorage get item
+
   let itemToCart: ProductsInCart = new ProductsInCart(1, product);
   let found = false;
 
@@ -100,9 +117,14 @@ export function addToCart(product: ChristmasBauble) {
     found = false;
   } else {
     for (let i = 0; i < listToLocalStorage.length; i++) {
-      if (listToLocalStorage[i].product.id === itemToCart.product.id) {
+      if (
+        listToLocalStorage[i].product.id === itemToCart.product.id
+      ) {
         listToLocalStorage[i].amount++;
-        localStorage.setItem("product", JSON.stringify(listToLocalStorage));
+        localStorage.setItem(
+          "product",
+          JSON.stringify(listToLocalStorage)
+        );
         console.log("den finns i listan");
         found = true;
         return;
@@ -113,7 +135,10 @@ export function addToCart(product: ChristmasBauble) {
   if (found === false) {
     console.log("hittar inte id");
     listToLocalStorage.push(itemToCart);
-    localStorage.setItem("product", JSON.stringify(listToLocalStorage));
+    localStorage.setItem(
+      "product",
+      JSON.stringify(listToLocalStorage)
+    );
   }
 }
 
