@@ -160,13 +160,13 @@ export function subtractFromCart(product: ProductsInCart) {
   if (product.amount > 0) {
     product.amount--; // minskar om det är mer än 1 av en produkt i varukorgen.
     let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
-    localStorage.setItem("varukorg", savedCart); //uppdaterar localstorage med den nya listan
+    localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
   }
   if (product.amount === 0) {
     let index = listFromLocalStorage.indexOf(product); // gör en variabel av listpositioonen som jag vill radera.
     listFromLocalStorage.splice(index, 1); // ta bort produkten ur varukorgen om amount blir noll..
     let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
-    localStorage.setItem("varukorg", savedCart); //uppdaterar localstorage med den nya listan
+    localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
   }
   displayProductsInCart(listFromLocalStorage); // måste rendera om sidan och hela tiden (varje gång vi gör ändringar) skicka med den senaste listan.
 }
