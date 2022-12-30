@@ -4,7 +4,8 @@ import { ProductsInCart } from "./models/ProductsInCart";
 // import { addToCart, listToLocalStorage } from "./products";
 import { addToCart } from "./products";
 
-// let listFromLocalStorage: ProductsInCart[] = [];
+let listFromLocalStorage: ProductsInCart[] = [];
+listFromLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
 let sum: number = 0;
 let amountOfProducts: number = 1;
 
@@ -167,13 +168,19 @@ function increaseQuantityByOne(
 // }
 
 function displayProductsSum() {
+  let sumAmount = 0;
+  for (let i = 0; i < listFromLocalStorage.length; i++){
+    sumAmount += (listFromLocalStorage[i].product.price * listFromLocalStorage[i].amount);
+  }
+
   let productsTotalContainer: HTMLDivElement = document.createElement("div");
   let productTotalText: HTMLHeadingElement = document.createElement("h3");
 
   productsTotalContainer.classList.add("productsTotalContainer");
   productTotalText.classList.add("productTotalText");
 
-  productTotalText.innerHTML = "Totalbelopp: " + sum + "kr";
+  productTotalText.innerHTML = "Totalbelopp: " + sumAmount + "kr";
+  console.log("Detta skall vara totalbelopp" + sumAmount);
 
   productsTotalContainer.appendChild(productTotalText);
 

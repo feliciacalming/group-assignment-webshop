@@ -6,7 +6,7 @@ let productCounter: HTMLParagraphElement = document.createElement("p");
 
 export function displayCounter() {
   let sum = 0;
-  
+
   for (let i = 0; i < listFromLocalStorage.length; i++){
     sum += listFromLocalStorage[i].amount;
     console.log(listFromLocalStorage[i].amount);
@@ -23,4 +23,5 @@ export function displayCounter() {
     counterContainer
   );
 }
+
 displayCounter();
