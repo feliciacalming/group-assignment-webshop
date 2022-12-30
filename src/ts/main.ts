@@ -1,14 +1,19 @@
-import { ChristmasBauble } from "./models/ChristmasBauble";
+import { ProductsInCart } from "./models/ProductsInCart";
 
-export let listFromLocalStorage: ChristmasBauble[] = [];
+export let listFromLocalStorage: ProductsInCart[] = [];
+listFromLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
+let productCounter: HTMLParagraphElement = document.createElement("p");
 
 export function displayCounter() {
-  listFromLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
+  let sum = 0;
 
+  for (let i = 0; i < listFromLocalStorage.length; i++){
+    sum += listFromLocalStorage[i].amount;
+    console.log(listFromLocalStorage[i].amount);
+  }
+
+  productCounter.textContent = sum.toString();
   let counterContainer: HTMLDivElement = document.createElement("div");
-  let productCounter: HTMLParagraphElement = document.createElement("p");
-
-  productCounter.textContent = listFromLocalStorage.length.toString();
 
   counterContainer.classList.add("counter");
 
@@ -18,4 +23,5 @@ export function displayCounter() {
     counterContainer
   );
 }
+
 displayCounter();
