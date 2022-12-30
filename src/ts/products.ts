@@ -2,11 +2,8 @@ import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
 import { displayCounter } from "./main";
 import { ProductsInCart } from "./models/ProductsInCart";
+import { colors, size } from "./models/filterOptions";
 import { displayProductdetails } from "./productdetails";
-
-console.log("hej");
-
-// export
 
 const assortmentContainer: HTMLDivElement =
   document.createElement("div");
@@ -26,6 +23,16 @@ assortmentAmount.innerHTML =
   "Visar " + productItems.length.toString() + " produkter";
 filterButton.innerHTML = "Filter";
 
+//eventlistener för filter
+filterButton.addEventListener("click", () => {
+  let page = document.getElementById("productpage") as HTMLDivElement;
+  page.classList.toggle("hide");
+
+  (
+    document.getElementById("filter") as HTMLDivElement
+  ).classList.toggle("show");
+});
+
 assortmentContainer.classList.add("assortment");
 assortmentHeading.classList.add("assortment__heading");
 assortmentInfoText.classList.add("assortment__info");
@@ -40,12 +47,9 @@ assortmentContainer.appendChild(filterButton);
   assortmentContainer
 );
 
-/***** Funktioner *****/
+//Filter-rutan
 
-//lägger till produkterna från local storage i listan när sidan laddas om. annars börjar varukorg-countern räkna om från
-//början när man lägger till en ny produkt efter att ha laddat om sidan, trots att det är flera objekt i local storage.
-// listToLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
-//hämtar man här så kmr den alltid ligga kvar
+/***** Funktioner *****/
 
 function displayProducts(productItems: ChristmasBauble[]) {
   for (let i = 0; i < productItems.length; i++) {
@@ -88,36 +92,15 @@ function displayProducts(productItems: ChristmasBauble[]) {
       productContainer
     );
 
-    //Den här anonyma funktionen funkade som den ska.
-
     productButton.addEventListener("click", () => {
       addToCart(productItems[i]);
       let test = "hej";
-      //   let itemToCart: ProductsInCart = new ProductsInCart(1, productItems[i]);
-      //   if (
-      //     listToLocalStorage.find(
-      //       (productsInLS) => productsInLS.product.id === itemToCart.product.id
-      //     )
-      //   ) {
-      //     listToLocalStorage[i].amount++;
-      //     localStorage.setItem("product", JSON.stringify(listToLocalStorage));
-      //   } else {
-      //     listToLocalStorage.push(itemToCart);
-      //     localStorage.setItem("product", JSON.stringify(listToLocalStorage));
-      //   }
-
-      //   console.log(listToLocalStorage);
-      //   displayCounter();
     });
   }
 }
 
 export function addToCart(product: ChristmasBauble) {
-  //hämta listan från LS här
-  // let listan = ProductsInCart
-  // listan = parse localstorage get item
-  // let listToLocalStorage: ProductsInCart[] = [];
-  // listToLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
+  //hämta listan från LS här istälet för högst upp i filen
   let listToLocalStorage: ProductsInCart[] = [];
   listToLocalStorage = JSON.parse(
     localStorage.getItem("product") || "[]"
@@ -155,24 +138,78 @@ export function addToCart(product: ChristmasBauble) {
   }
 }
 
-///FUNKTION #3
+//FILTER FUNKTIONER
+const filterContainer = document.getElementById(
+  "filter"
+) as HTMLDivElement;
+const filterHeading = document.getElementById(
+  "filter-heading"
+) as HTMLElement;
+const filterTitle = document.createElement("h1");
+const exitBtn = document.createElement("button");
 
-// function addToCart(product: ChristmasBauble) {
-//   if (listToLocalStorage.length) {
-//     for (const productInCart of listToLocalStorage) {
-//       if (productInCart.product.id === product.id) {
-//         let newAmount = productInCart.amount + 1;
-//         productInCart.amount = newAmount;
-//       }
-//     }
-//   } else {
-//     let itemToCart: ProductsInCart = new ProductsInCart(1, product);
-//     listToLocalStorage.push(itemToCart);
+exitBtn.classList.add("filter__exitButton");
+filterTitle.classList.add("filter__title");
 
-//   }
-//   localStorage.setItem("product", JSON.stringify(listToLocalStorage));
+filterTitle.innerHTML = "Filter";
+exitBtn.innerHTML = "X";
 
-//FUNKTION #2
+// Toggle för Filter-funktionen. När man klickar på X i filter-rutan får den display: none igen, och produktsidan display: block igen.
+exitBtn.addEventListener("click", () => {
+  (
+    document.getElementById("filter") as HTMLDivElement
+  ).classList.toggle("show");
+  (
+    document.getElementById("productpage") as HTMLDivElement
+  ).classList.toggle("hide");
+});
+
+filterHeading.appendChild(filterTitle);
+filterHeading.appendChild(exitBtn);
+
+//FÄRGFILTER.
+
+for (let i = 0; i < colors.length; i++) {
+  let colorFilters: HTMLElement = document.getElementById(
+    "color"
+  ) as HTMLElement;
+  let colorContainer: HTMLDivElement = document.createElement("div");
+  let checkbox: HTMLInputElement = document.createElement("input");
+  checkbox.type = "checkbox";
+  let colorname: HTMLHeadingElement = document.createElement("h4");
+
+  colorContainer.classList.add("color__container");
+  checkbox.classList.add("color__checkbox");
+  colorname.classList.add("color__name");
+
+  colorname.innerHTML = colors[i];
+  colorContainer.appendChild(checkbox);
+  colorContainer.appendChild(colorname);
+
+  colorFilters.appendChild(colorContainer);
+}
+
+//STORLEKSFILTER.
+
+for (let i = 0; i < size.length; i++) {
+  let sizeFilters: HTMLElement = document.getElementById(
+    "size"
+  ) as HTMLElement;
+  let sizeContainer: HTMLDivElement = document.createElement("div");
+  let checkbox: HTMLInputElement = document.createElement("input");
+  checkbox.type = "checkbox";
+  let sizeNumber: HTMLHeadingElement = document.createElement("h4");
+
+  sizeContainer.classList.add("size__container");
+  checkbox.classList.add("size__checkbox");
+  sizeNumber.classList.add("size__number");
+
+  sizeNumber.innerHTML = size[i].toString();
+
+  sizeContainer.appendChild(checkbox);
+  sizeContainer.appendChild(sizeNumber);
+  sizeFilters.appendChild(sizeContainer);
+}
 
 displayCounter();
 displayProducts(productItems);

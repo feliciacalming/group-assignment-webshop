@@ -1,5 +1,3 @@
-import { displayCounter } from "./main";
-
 function displayPaymentGateway(){
     let checkoutContainer: HTMLDivElement = document.createElement("div");
     let checkoutForm: HTMLFormElement = document.createElement("form");
@@ -90,4 +88,3 @@ function displayPaymentGateway(){
     }
 }
 displayPaymentGateway();
-//displayCounter();

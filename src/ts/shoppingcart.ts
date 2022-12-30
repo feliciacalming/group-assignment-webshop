@@ -245,9 +245,27 @@ function displayClearCartButton() {
   });
 }
 
+function displayToCheckout() {
+  let productToCheckoutButton: HTMLButtonElement =
+    document.createElement("button");
+
+  productToCheckoutButton.classList.add("productToCheckoutButton");
+
+  productToCheckoutButton.textContent = "Till kassa";
+
+  (document.querySelector(".productsClearContainer") as HTMLElement).appendChild(
+    productToCheckoutButton
+  );
+
+  productToCheckoutButton.addEventListener("click", () => {
+    window.location.href = "checkout.html";
+  });
+}
+
 // displayProductsInCart(listFromLocalStorage);
 displayProductsInCart();
 displayProductsSum();
 displayClearCartButton();
 displayCounter();
+displayToCheckout();
 console.log("This is the total: ", sum);
