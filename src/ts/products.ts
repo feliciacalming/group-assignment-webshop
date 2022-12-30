@@ -1,6 +1,6 @@
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
-// import { displayCounter } from "./main";
+import { displayCounter } from "./main";
 import { ProductsInCart } from "./models/ProductsInCart";
 
 console.log("hej");
@@ -147,5 +147,5 @@ export function addToCart(product: ChristmasBauble) {
 
 //FUNKTION #2
 
-// displayCounter();
+displayCounter();
 displayProducts(productItems);
