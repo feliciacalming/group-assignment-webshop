@@ -1,16 +1,15 @@
 import { displayCounter } from "./main";
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { ProductsInCart } from "./models/ProductsInCart";
-import { addToCart, listToLocalStorage } from "./products";
+// import { addToCart, listToLocalStorage } from "./products";
+import { addToCart } from "./products";
 
-let listFromLocalStorage: ProductsInCart[] = [];
+// let listFromLocalStorage: ProductsInCart[] = [];
 let sum: number = 0;
 let amountOfProducts: number = 1;
 
-function displayProductsInCart(
-  listFromLocalStorage: ProductsInCart[]
-) {
-  listFromLocalStorage = JSON.parse(
+function displayProductsInCart() {
+  let listFromLocalStorage = JSON.parse(
     localStorage.getItem("product") || "[]"
   );
   listFromLocalStorage = listFromLocalStorage.map(
@@ -91,14 +90,35 @@ function displayProductsInCart(
     productInCartButtonPlus.addEventListener("click", () => {
       console.log("You clicked on + ");
 
-      addToCart(listFromLocalStorage[i].product);
+      listFromLocalStorage[i].amount++;
+      localStorage.setItem(
+        "product",
+        JSON.stringify(listFromLocalStorage)
+      );
+      displayProductsInCart();
+
+      // addToCart(listFromLocalStorage[i].product);
       //increaseQuantityByOne(listFromLocalStorage[i].product);
     });
 
     productInCartButtonMinus.addEventListener("click", () => {
       console.log("You clicked on - ");
+      listFromLocalStorage[i].amount--;
+      localStorage.setItem(
+        "product",
+        JSON.stringify(listFromLocalStorage)
+      );
+      if (listFromLocalStorage[i].amount === 0) {
+        let index = listFromLocalStorage.indexOf(
+          listFromLocalStorage[i]
+        ); // gör en variabel av listpositioonen som jag vill radera.
+        listFromLocalStorage.splice(index, 1); // ta bort produkten ur varukorgen om amount blir noll..
+        let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
+        localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
+      }
+      displayProductsInCart();
 
-      subtractFromCart(listFromLocalStorage[i]);
+      // subtractFromCart(listFromLocalStorage[i]);
       //increaseQuantityByOne(listFromLocalStorage[i].product);
     });
   }
@@ -156,20 +176,20 @@ function increaseQuantityByOne(
   displayProductsInCart();
 }*/
 
-export function subtractFromCart(product: ProductsInCart) {
-  if (product.amount > 0) {
-    product.amount--; // minskar om det är mer än 1 av en produkt i varukorgen.
-    let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
-    localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
-  }
-  if (product.amount === 0) {
-    let index = listFromLocalStorage.indexOf(product); // gör en variabel av listpositioonen som jag vill radera.
-    listFromLocalStorage.splice(index, 1); // ta bort produkten ur varukorgen om amount blir noll..
-    let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
-    localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
-  }
-  displayProductsInCart(listFromLocalStorage); // måste rendera om sidan och hela tiden (varje gång vi gör ändringar) skicka med den senaste listan.
-}
+// export function subtractFromCart(product: ProductsInCart) {
+//   if (product.amount > 0) {
+//     product.amount--; // minskar om det är mer än 1 av en produkt i varukorgen.
+//     let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
+//     localStorage.setItem("varukorg", savedCart); //uppdaterar localstorage med den nya listan
+//   }
+//   if (product.amount === 0) {
+//     let index = listFromLocalStorage.indexOf(product); // gör en variabel av listpositioonen som jag vill radera.
+//     listFromLocalStorage.splice(index, 1); // ta bort produkten ur varukorgen om amount blir noll..
+//     let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
+//     localStorage.setItem("varukorg", savedCart); //uppdaterar localstorage med den nya listan
+//   }
+//   displayProductsInCart(listFromLocalStorage); // måste rendera om sidan och hela tiden (varje gång vi gör ändringar) skicka med den senaste listan.
+// }
 
 function displayProductsSum() {
   let productsTotalContainer: HTMLDivElement =
@@ -214,7 +234,8 @@ function displayClearCartButton() {
   });
 }
 
-displayProductsInCart(listFromLocalStorage);
+// displayProductsInCart(listFromLocalStorage);
+displayProductsInCart();
 displayProductsSum();
 displayClearCartButton();
 displayCounter();

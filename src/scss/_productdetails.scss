@@ -1,0 +1,20 @@
+@use "mixins" as mix;
+@use "variables" as var;
+
+.productdetailpage-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: var.$color-secondary-dark;
+}
+
+.productdetailpage {
+  margin-top: 70px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+}
