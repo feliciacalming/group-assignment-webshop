@@ -1,56 +1,74 @@
 @use "mixins" as mix;
 @use "variables" as var;
 
-.content{
-    margin-top: 25px;
-    .checkout{
+.content {
+  // margin-top: 25px;
+  .checkout {
+    width: 90%;
+    height: auto;
+    background-color: var.$dark-red;
+    border-radius: 25px;
+    margin: -10px auto 30px auto;
+    form {
+      display: grid;
+      padding: 10px;
+      text-align: left !important;
+      grid-auto-flow: column;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+      gap: 0px 0px;
+      place-items: left;
+      grid-template-areas:
+        "fname-text lname-text"
+        "fname lname"
+        "cc-text cc-text"
+        "cc cc"
+        "ccv-text ccv-text"
+        "ccv submit";
+      input {
+        width: 80%;
+        border: none;
+        outline: none;
+        padding: 5px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      label {
+        line-height: 35px;
+      }
+      input[type="submit"] {
+        margin-left: 10px;
+      }
+      .cc {
         width: 90%;
-        height: auto;
-        background-color: var.$dark-red;
-        border-radius: 25px;
-        margin: -10px auto 30px auto;
-        form{
-            display: grid;
-            padding: 10px;
-            text-align: left!important;
-            grid-auto-flow: column; 
-            grid-template-columns: 1fr 1fr; 
-            grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; 
-            gap: 0px 0px; 
-            place-items: left;
-            grid-template-areas: 
-                "fname-text lname-text"
-                "fname lname"
-                "cc-text cc-text"
-                "cc cc"
-                "ccv-text ccv-text"
-                "ccv submit";
-            input{
-                width: 80%;
-                border: none;
-                outline: none;
-                padding: 5px;
-                border-radius: 5px;
-                margin-bottom: 10px;
-            }
-            label{
-                line-height: 35px;
-            }
-            input[type=submit]{
-                margin-left: 10px;
-            }
-            .cc{
-                width: 90%;
-            }
-        }
-        .fname-text { grid-area: fname-text; }
-        .lname-text { grid-area: lname-text; }
-        .fname { grid-area: fname; }
-        .lname { grid-area: lname; }
-        .cc-text { grid-area: cc-text; }
-        .cc { grid-area: cc; }
-        .ccv { grid-area: ccv; }
-        .submit { grid-area: submit; }
-        .ccv-text { grid-area: ccv-text; }
+      }
     }
+    .fname-text {
+      grid-area: fname-text;
+    }
+    .lname-text {
+      grid-area: lname-text;
+    }
+    .fname {
+      grid-area: fname;
+    }
+    .lname {
+      grid-area: lname;
+    }
+    .cc-text {
+      grid-area: cc-text;
+    }
+    .cc {
+      grid-area: cc;
+    }
+    .ccv {
+      grid-area: ccv;
+    }
+    .submit {
+      grid-area: submit;
+    }
+    .ccv-text {
+      grid-area: ccv-text;
+    }
+  }
 }
