@@ -1,9 +1,9 @@
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
-import { displayCounter } from "./main";
 import { ProductsInCart } from "./models/ProductsInCart";
 import { colors, size } from "./models/filterOptions";
 import { displayProductdetails } from "./productdetails";
+import { displayCounter } from "./functions.ts/cartFunctions";
 import { toggleFilter } from "./functions.ts/filterFunctions";
 
 const assortmentContainer: HTMLDivElement =
@@ -14,11 +14,12 @@ const assortmentInfoText: HTMLParagraphElement =
   document.createElement("p");
 const assortmentAmount: HTMLParagraphElement =
   document.createElement("h5");
+const buttonContainer: HTMLDivElement = document.createElement("div");
 const filterButton: HTMLButtonElement =
   document.createElement("button");
 
-// const productsOnDisplay: HTMLElement = document.createElement("section");
-// productsOnDisplay.classList.add("productsOnDisplay");
+const productsOnDisplay: HTMLElement =
+  document.createElement("section");
 
 assortmentHeading.innerHTML = "Julgranskulor";
 assortmentInfoText.innerHTML =
@@ -30,7 +31,6 @@ filterButton.innerHTML = "Filter";
 //eventlistener för filter
 filterButton.addEventListener("click", () => {
   toggleFilter();
-  displayProducts(filteredProducts);
 });
 
 assortmentContainer.classList.add("assortment");
@@ -38,11 +38,14 @@ assortmentHeading.classList.add("assortment__heading");
 assortmentInfoText.classList.add("assortment__info");
 assortmentAmount.classList.add("assortment__amount");
 filterButton.classList.add("assortment__button");
+productsOnDisplay.classList.add("productsOnDisplay");
+buttonContainer.classList.add("amountAndButton");
 
 assortmentContainer.appendChild(assortmentHeading);
 assortmentContainer.appendChild(assortmentInfoText);
-assortmentContainer.appendChild(assortmentAmount);
-assortmentContainer.appendChild(filterButton);
+buttonContainer.appendChild(assortmentAmount);
+buttonContainer.appendChild(filterButton);
+assortmentContainer.appendChild(buttonContainer);
 (document.querySelector("main") as HTMLElement).appendChild(
   assortmentContainer
 );
@@ -52,6 +55,8 @@ assortmentContainer.appendChild(filterButton);
 /***** Funktioner *****/
 
 function displayProducts(productItems: ChristmasBauble[]) {
+  productsOnDisplay.innerHTML = "";
+
   for (let i = 0; i < productItems.length; i++) {
     let productContainer: HTMLDivElement =
       document.createElement("div");
@@ -81,7 +86,7 @@ function displayProducts(productItems: ChristmasBauble[]) {
     productContainer.appendChild(productTitle);
     productContainer.appendChild(productPrice);
     productContainer.appendChild(productButton);
-    // productsOnDisplay.appendChild(productContainer);
+    productsOnDisplay.appendChild(productContainer);
 
     productContainer.addEventListener("click", () => {
       document.location.href =
@@ -89,7 +94,7 @@ function displayProducts(productItems: ChristmasBauble[]) {
     });
 
     (document.querySelector("main") as HTMLElement).appendChild(
-      productContainer
+      productsOnDisplay
     );
 
     productButton.addEventListener("click", () => {
@@ -245,7 +250,6 @@ function displaySizeOptions() {
 }
 
 //FILTRERINGSFUNKTION FÖR STORLEK
-
 displayCounter();
 displayProducts(productItems);
 displayColorOptions();

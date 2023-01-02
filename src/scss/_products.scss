@@ -56,19 +56,41 @@
     margin-left: 10px;
 
     @include mix.desktop {
-      margin-top: 50px;
       margin-bottom: 10px;
       font-size: 15px;
     }
   }
 
   &__button {
-    margin-left: 80%;
+    margin-right: 33px;
+    border-style: none;
+    width: 100px;
+    height: 20px;
+    padding: 3px 10px 3px 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(247 87 111);
+    cursor: pointer;
   }
 }
 
+.amountAndButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.productsOnDisplay {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+}
+
 .productpage {
-  margin-top: 70px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -101,7 +123,7 @@
     }
 
     @include mix.desktop {
-      width: 300px;
+      width: 230px;
     }
   }
 

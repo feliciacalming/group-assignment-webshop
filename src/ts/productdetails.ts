@@ -1,6 +1,6 @@
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
-// import { displayCounter } from "./main";
+import { displayCounter } from "./functions.ts/cartFunctions";
 import { ProductsInCart } from "./models/ProductsInCart";
 import { addToCart } from "./products";
 
@@ -64,3 +64,4 @@ export function displayProductdetails() {
   }
 }
 displayProductdetails();
+displayCounter();
