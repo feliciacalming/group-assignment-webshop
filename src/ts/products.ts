@@ -10,10 +10,10 @@ const assortmentContainer: HTMLDivElement = document.createElement("div");
 const assortmentHeading: HTMLHeadingElement = document.createElement("h2");
 const assortmentInfoText: HTMLParagraphElement = document.createElement("p");
 const assortmentAmount: HTMLParagraphElement = document.createElement("h5");
+const buttonContainer: HTMLDivElement = document.createElement("div");
 const filterButton: HTMLButtonElement = document.createElement("button");
 
 const productsOnDisplay: HTMLElement = document.createElement("section");
-productsOnDisplay.classList.add("productsOnDisplay");
 
 assortmentHeading.innerHTML = "Julgranskulor";
 assortmentInfoText.innerHTML =
@@ -25,7 +25,6 @@ filterButton.innerHTML = "Filter";
 //eventlistener för filter
 filterButton.addEventListener("click", () => {
   toggleFilter();
-  displayProducts(filteredProducts);
 });
 
 assortmentContainer.classList.add("assortment");
@@ -33,11 +32,14 @@ assortmentHeading.classList.add("assortment__heading");
 assortmentInfoText.classList.add("assortment__info");
 assortmentAmount.classList.add("assortment__amount");
 filterButton.classList.add("assortment__button");
+productsOnDisplay.classList.add("productsOnDisplay");
+buttonContainer.classList.add("amountAndButton");
 
 assortmentContainer.appendChild(assortmentHeading);
 assortmentContainer.appendChild(assortmentInfoText);
-assortmentContainer.appendChild(assortmentAmount);
-assortmentContainer.appendChild(filterButton);
+buttonContainer.appendChild(assortmentAmount);
+buttonContainer.appendChild(filterButton);
+assortmentContainer.appendChild(buttonContainer);
 (document.querySelector("main") as HTMLElement).appendChild(
   assortmentContainer
 );
