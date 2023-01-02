@@ -46,10 +46,11 @@
 
   &__paragraph {
     width: 60%;
-    font-size: 10px;
+    font-size: 15px;
+    color: black;
 
     @include mix.desktop {
-      scale: 2;
+      scale: 1;
       align-self: flex-end;
       padding-left: 5px;
       margin-bottom: 20px;
@@ -60,6 +61,7 @@
   &__title {
     font-family: var.$text-secondary;
     margin-bottom: 5;
+    color: black;
 
     @include mix.desktop {
       scale: 2;
