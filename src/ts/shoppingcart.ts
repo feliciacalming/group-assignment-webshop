@@ -1,9 +1,8 @@
-
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { ProductsInCart } from "./models/ProductsInCart";
 import { displayCounter } from "./functions.ts/cartFunctions";
 // import { addToCart, listToLocalStorage } from "./products";
-import { addToCart } from "./products";
+import { addToCart } from "../ts/functions.ts/cartFunctions";
 
 let listFromLocalStorage: ProductsInCart[] = [];
 listFromLocalStorage = JSON.parse(
@@ -254,9 +253,9 @@ function displayToCheckout() {
 
   productToCheckoutButton.textContent = "Till kassa";
 
-  (document.querySelector(".productsClearContainer") as HTMLElement).appendChild(
-    productToCheckoutButton
-  );
+  (
+    document.querySelector(".productsClearContainer") as HTMLElement
+  ).appendChild(productToCheckoutButton);
 
   productToCheckoutButton.addEventListener("click", () => {
     window.location.href = "checkout.html";

@@ -3,7 +3,10 @@ import { productItems } from "./models/productItems";
 import { ProductsInCart } from "./models/ProductsInCart";
 import { colors, size } from "./models/filterOptions";
 import { displayProductdetails } from "./productdetails";
-import { displayCounter } from "./functions.ts/cartFunctions";
+import {
+  addToCart,
+  displayCounter,
+} from "./functions.ts/cartFunctions";
 import { toggleFilter } from "./functions.ts/filterFunctions";
 
 const assortmentContainer: HTMLDivElement =
@@ -100,45 +103,6 @@ function displayProducts(productItems: ChristmasBauble[]) {
     productButton.addEventListener("click", () => {
       addToCart(productItems[i]);
     });
-  }
-}
-
-export function addToCart(product: ChristmasBauble) {
-  //hämta listan från LS här istälet för högst upp i filen
-  let listToLocalStorage: ProductsInCart[] = [];
-  listToLocalStorage = JSON.parse(
-    localStorage.getItem("product") || "[]"
-  );
-
-  let itemToCart: ProductsInCart = new ProductsInCart(1, product);
-  let found = false;
-
-  if (listToLocalStorage.length === 0) {
-    found = false;
-  } else {
-    for (let i = 0; i < listToLocalStorage.length; i++) {
-      if (
-        listToLocalStorage[i].product.id === itemToCart.product.id
-      ) {
-        listToLocalStorage[i].amount++;
-        localStorage.setItem(
-          "product",
-          JSON.stringify(listToLocalStorage)
-        );
-        console.log("den finns i listan");
-        found = true;
-        return;
-      }
-    }
-  }
-
-  if (found === false) {
-    console.log("hittar inte id");
-    listToLocalStorage.push(itemToCart);
-    localStorage.setItem(
-      "product",
-      JSON.stringify(listToLocalStorage)
-    );
   }
 }
 

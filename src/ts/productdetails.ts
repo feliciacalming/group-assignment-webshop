@@ -2,7 +2,7 @@ import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
 import { displayCounter } from "./functions.ts/cartFunctions";
 import { ProductsInCart } from "./models/ProductsInCart";
-import { addToCart } from "./products";
+import { addToCart } from "../ts/functions.ts/cartFunctions";
 
 export function displayProductdetails() {
   let url = window.location.search;
@@ -29,6 +29,16 @@ export function displayProductdetails() {
       let productDetailButton: HTMLButtonElement =
         document.createElement("button");
 
+      let productInCartButtonMinus: HTMLButtonElement =
+        document.createElement("button");
+      let amountOfProductsText: HTMLSpanElement =
+        document.createElement("span");
+      let productInCartButtonPlus: HTMLButtonElement =
+        document.createElement("button");
+
+      productInCartButtonMinus.textContent = "-";
+      productInCartButtonPlus.textContent = "+";
+
       productDetailContainer.classList.add("productdetail");
       productDetailTitle.classList.add("productdetail__title");
       productDetailImage.classList.add("productdetail__image");
@@ -45,9 +55,6 @@ export function displayProductdetails() {
 
       productDescribtion.innerText = productItems[i].description;
       productDetailTitle.innerHTML = productItems[i].name;
-      productDetailPrice.innerHTML =
-        productItems[i].price.toString() + " kr";
-      productDetailButton.innerHTML = "Lägg i varukorg";
 
       productDetailContainer.appendChild(containerOfImg);
       containerOfImg.appendChild(productDetailImage);
@@ -57,11 +64,24 @@ export function displayProductdetails() {
       containerOfInfo.appendChild(productDetailPrice);
       containerOfInfo.appendChild(productDetailButton);
 
+      containerOfInfo.appendChild(productInCartButtonMinus);
+      containerOfInfo.appendChild(amountOfProductsText);
+      containerOfInfo.appendChild(productInCartButtonPlus);
+
       (document.querySelector("main") as HTMLElement).appendChild(
         productDetailContainer
       );
+
+      productInCartButtonPlus.addEventListener("click", () => {
+        console.log("You clicked on + ");
+        addToCart(productItems[i]);
+      });
+
+      productInCartButtonMinus.addEventListener("click", () => {
+        console.log("You clicked on - ");
+        addToCart(productItems[i]);
+      });
     }
   }
 }
 displayProductdetails();
-displayCounter();
