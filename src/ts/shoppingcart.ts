@@ -1,6 +1,7 @@
-import { displayCounter } from "./main";
+
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { ProductsInCart } from "./models/ProductsInCart";
+import { displayCounter } from "./functions.ts/cartFunctions";
 // import { addToCart, listToLocalStorage } from "./products";
 import { addToCart } from "./products";
 
@@ -265,7 +266,7 @@ function displayToCheckout() {
 // displayProductsInCart(listFromLocalStorage);
 displayProductsInCart();
 displayProductsSum();
-displayClearCartButton();
 displayCounter();
+displayClearCartButton();
 displayToCheckout();
 console.log("This is the total: ", sum);

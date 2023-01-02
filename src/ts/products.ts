@@ -1,9 +1,9 @@
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
-import { displayCounter } from "./main";
 import { ProductsInCart } from "./models/ProductsInCart";
 import { colors, size } from "./models/filterOptions";
 import { displayProductdetails } from "./productdetails";
+import { displayCounter } from "./functions.ts/cartFunctions";
 import { toggleFilter } from "./functions.ts/filterFunctions";
 
 const assortmentContainer: HTMLDivElement = document.createElement("div");
@@ -221,7 +221,6 @@ function displaySizeOptions() {
 }
 
 //FILTRERINGSFUNKTION FÖR STORLEK
-
 displayCounter();
 displayProducts(productItems);
 displayColorOptions();

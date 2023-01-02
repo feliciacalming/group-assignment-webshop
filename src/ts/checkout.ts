@@ -1,3 +1,13 @@
+import { displayCounter } from "./functions.ts/cartFunctions";
+import { ProductsInCart } from "./models/ProductsInCart";
+
+let listFromLocalStorage: ProductsInCart[] = [];
+listFromLocalStorage = JSON.parse(
+  localStorage.getItem("product") || "[]"
+);
+
+let sum: number = 0;
+
 function displayPaymentGateway(){
     let checkoutContainer: HTMLDivElement = document.createElement("div");
     let checkoutForm: HTMLFormElement = document.createElement("form");
@@ -87,4 +97,115 @@ function displayPaymentGateway(){
         },500);
     }
 }
+
+function displayProductsInCart() {
+    let listFromLocalStorage = JSON.parse(
+      localStorage.getItem("product") || "[]"
+    );
+    listFromLocalStorage = listFromLocalStorage.map(
+      (product: ProductsInCart) => {
+        return new ProductsInCart(product.amount, product.product);
+      }
+    );
+  
+    console.log(listFromLocalStorage);
+
+    (document.querySelector(".productsContainer") as HTMLElement).innerHTML = "";
+  
+    for (let i = 0; i < listFromLocalStorage.length; i++) {
+      let productInCartContainer: HTMLDivElement =
+        document.createElement("div");
+      let productInCartTitle: HTMLHeadingElement =
+        document.createElement("h3");
+      let productInCartImage: HTMLImageElement =
+        document.createElement("img");
+      let productInCartPrice: HTMLParagraphElement =
+        document.createElement("h5");
+      let productInCartButtonMinus: HTMLButtonElement =
+        document.createElement("button");
+      let amountOfProductsText: HTMLSpanElement =
+        document.createElement("span");
+      let productInCartButtonPlus: HTMLButtonElement =
+        document.createElement("button");
+      let productInCartButtonContainer: HTMLDivElement =
+        document.createElement("div");
+      sum += listFromLocalStorage[i].product.price;
+  
+      productInCartButtonMinus.textContent = "-";
+      productInCartButtonPlus.textContent = "+";
+  
+      productInCartContainer.classList.add("productInCartCheckout");
+      productInCartTitle.classList.add("productInCartCheckout__title");
+      productInCartImage.classList.add("productInCartCheckout__image");
+      productInCartPrice.classList.add("productInCartCheckout__price");
+      amountOfProductsText.classList.add("productInCartCheckout__amount");
+      productInCartButtonMinus.classList.add(
+        "productInCartButton__minus"
+      );
+      productInCartButtonPlus.classList.add(
+        "productInCartButton__plus"
+      );
+      productInCartButtonContainer.classList.add(
+        "productInCartButtonContainerCheckout"
+      );
+  
+      productInCartImage.src = listFromLocalStorage[i].product.image;
+      productInCartImage.alt = listFromLocalStorage[i].product.name;
+  
+      productInCartTitle.innerHTML =
+        listFromLocalStorage[i].product.name;
+      productInCartPrice.innerHTML =
+        listFromLocalStorage[i].product.price.toString() + " kr";
+      amountOfProductsText.innerHTML =
+        listFromLocalStorage[i].amount.toString();
+
+      productInCartContainer.appendChild(productInCartTitle);
+      productInCartContainer.appendChild(productInCartImage);
+      productInCartContainer.appendChild(productInCartPrice);
+      productInCartContainer.appendChild(productInCartButtonContainer);
+      productInCartButtonContainer.appendChild(
+        productInCartButtonMinus
+      );
+      productInCartButtonContainer.appendChild(amountOfProductsText);
+      productInCartButtonContainer.appendChild(productInCartButtonPlus);
+  
+      (document.querySelector(".productsContainer") as HTMLElement).appendChild(
+        productInCartContainer
+      );
+  
+      productInCartButtonPlus.addEventListener("click", () => {
+        console.log("You clicked on + ");
+  
+        listFromLocalStorage[i].amount++;
+        localStorage.setItem(
+          "product",
+          JSON.stringify(listFromLocalStorage)
+        );
+        displayProductsInCart();
+  
+        // addToCart(listFromLocalStorage[i].product);
+        //increaseQuantityByOne(listFromLocalStorage[i].product);
+      });
+  
+      productInCartButtonMinus.addEventListener("click", () => {
+        console.log("You clicked on - ");
+        listFromLocalStorage[i].amount--;
+        localStorage.setItem(
+          "product",
+          JSON.stringify(listFromLocalStorage)
+        );
+        if (listFromLocalStorage[i].amount === 0) {
+          let index = listFromLocalStorage.indexOf(
+            listFromLocalStorage[i]
+          ); // gör en variabel av listpositioonen som jag vill radera.
+          listFromLocalStorage.splice(index, 1); // ta bort produkten ur varukorgen om amount blir noll..
+          let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
+          localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
+        }        
+        displayProductsInCart();
+      });
+    }
+  }
+displayProductsInCart();
 displayPaymentGateway();
+displayCounter();

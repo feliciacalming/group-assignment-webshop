@@ -2,12 +2,50 @@
 @use "variables" as var;
 
 .content {
-  // margin-top: 25px;
+  .productsContainer{
+      flex-direction: column;
+      background-color: var.$dark-red;
+      width: 90%;
+      margin: 25px auto 0 auto;
+      color: white;
+      border-top-right-radius: 25px;
+      border-top-left-radius: 25px;
+      height: auto;
+    .productInCartCheckout {
+      @include mix.flexCenter;
+      flex-direction: column;
+      background-color: var.$dark-red;
+      width: 90%;
+      margin: 0 auto 0 auto;
+
+      &__image {
+        width: 100px;
+      }
+    
+      &__title {
+        margin-top: 15px;
+        margin-bottom: 5;
+        font-family: var.$text-secondary;
+      }
+    
+      &__price {
+        margin: 0;
+      }
+    }
+  }
+
+  .productInCartButtonContainerCheckout {
+    display: flex;
+    column-gap: 10px;
+    margin-bottom: 25px;
+  }
+
   .checkout {
     width: 90%;
     height: auto;
     background-color: var.$dark-red;
-    border-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
     margin: -10px auto 30px auto;
     form {
       display: grid;
