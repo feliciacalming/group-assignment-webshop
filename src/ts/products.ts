@@ -6,11 +6,16 @@ import { colors, size } from "./models/filterOptions";
 import { displayProductdetails } from "./productdetails";
 import { toggleFilter } from "./functions.ts/filterFunctions";
 
-const assortmentContainer: HTMLDivElement = document.createElement("div");
-const assortmentHeading: HTMLHeadingElement = document.createElement("h2");
-const assortmentInfoText: HTMLParagraphElement = document.createElement("p");
-const assortmentAmount: HTMLParagraphElement = document.createElement("h5");
-const filterButton: HTMLButtonElement = document.createElement("button");
+const assortmentContainer: HTMLDivElement =
+  document.createElement("div");
+const assortmentHeading: HTMLHeadingElement =
+  document.createElement("h2");
+const assortmentInfoText: HTMLParagraphElement =
+  document.createElement("p");
+const assortmentAmount: HTMLParagraphElement =
+  document.createElement("h5");
+const filterButton: HTMLButtonElement =
+  document.createElement("button");
 
 // const productsOnDisplay: HTMLElement = document.createElement("section");
 // productsOnDisplay.classList.add("productsOnDisplay");
@@ -48,11 +53,16 @@ assortmentContainer.appendChild(filterButton);
 
 function displayProducts(productItems: ChristmasBauble[]) {
   for (let i = 0; i < productItems.length; i++) {
-    let productContainer: HTMLDivElement = document.createElement("div");
-    let productTitle: HTMLHeadingElement = document.createElement("h5");
-    let productImage: HTMLImageElement = document.createElement("img");
-    let productPrice: HTMLParagraphElement = document.createElement("h5");
-    let productButton: HTMLButtonElement = document.createElement("button");
+    let productContainer: HTMLDivElement =
+      document.createElement("div");
+    let productTitle: HTMLHeadingElement =
+      document.createElement("h5");
+    let productImage: HTMLImageElement =
+      document.createElement("img");
+    let productPrice: HTMLParagraphElement =
+      document.createElement("h5");
+    let productButton: HTMLButtonElement =
+      document.createElement("button");
 
     productContainer.classList.add("product");
     productTitle.classList.add("product__title");
@@ -73,11 +83,10 @@ function displayProducts(productItems: ChristmasBauble[]) {
     productContainer.appendChild(productButton);
     // productsOnDisplay.appendChild(productContainer);
 
-    // productContainer.addEventListener("click", () => {
-    //   displayProductdetails(productItems[i]);
-
-    //   document.location.href = "productdetails.html";
-    // });
+    productContainer.addEventListener("click", () => {
+      document.location.href =
+        "productdetails.html?id=" + productItems[i].id;
+    });
 
     (document.querySelector("main") as HTMLElement).appendChild(
       productContainer
@@ -92,7 +101,9 @@ function displayProducts(productItems: ChristmasBauble[]) {
 export function addToCart(product: ChristmasBauble) {
   //hämta listan från LS här istälet för högst upp i filen
   let listToLocalStorage: ProductsInCart[] = [];
-  listToLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
+  listToLocalStorage = JSON.parse(
+    localStorage.getItem("product") || "[]"
+  );
 
   let itemToCart: ProductsInCart = new ProductsInCart(1, product);
   let found = false;
@@ -101,9 +112,14 @@ export function addToCart(product: ChristmasBauble) {
     found = false;
   } else {
     for (let i = 0; i < listToLocalStorage.length; i++) {
-      if (listToLocalStorage[i].product.id === itemToCart.product.id) {
+      if (
+        listToLocalStorage[i].product.id === itemToCart.product.id
+      ) {
         listToLocalStorage[i].amount++;
-        localStorage.setItem("product", JSON.stringify(listToLocalStorage));
+        localStorage.setItem(
+          "product",
+          JSON.stringify(listToLocalStorage)
+        );
         console.log("den finns i listan");
         found = true;
         return;
@@ -114,13 +130,20 @@ export function addToCart(product: ChristmasBauble) {
   if (found === false) {
     console.log("hittar inte id");
     listToLocalStorage.push(itemToCart);
-    localStorage.setItem("product", JSON.stringify(listToLocalStorage));
+    localStorage.setItem(
+      "product",
+      JSON.stringify(listToLocalStorage)
+    );
   }
 }
 
 //FILTER FUNKTIONER
-const filterContainer = document.getElementById("filter") as HTMLDivElement;
-const filterHeading = document.getElementById("filter-heading") as HTMLElement;
+const filterContainer = document.getElementById(
+  "filter"
+) as HTMLDivElement;
+const filterHeading = document.getElementById(
+  "filter-heading"
+) as HTMLElement;
 const filterTitle = document.createElement("h1");
 const exitBtn = document.createElement("button");
 const useFilterBtn = document.createElement("button");
@@ -160,7 +183,8 @@ function displayColorOptions() {
     let colorFilters: HTMLElement = document.getElementById(
       "color"
     ) as HTMLElement;
-    let colorContainer: HTMLDivElement = document.createElement("div");
+    let colorContainer: HTMLDivElement =
+      document.createElement("div");
     let checkbox: HTMLInputElement = document.createElement("input");
     checkbox.type = "checkbox";
     let colorname: HTMLHeadingElement = document.createElement("h4");
@@ -200,7 +224,9 @@ function displaySizeOptions() {
     checkbox.addEventListener("click", () => {
       if (checkbox.checked === true) {
         for (let i = 0; i < productItems.length; i++) {
-          if (sizeNumber.innerHTML === productItems[i].size.toString()) {
+          if (
+            sizeNumber.innerHTML === productItems[i].size.toString()
+          ) {
             filteredProducts.push(productItems[i]);
 
             /* Ska lägga till en knapp för "Använd filter", och när man trycker på den ska den köra toggleFilter för att stänga
