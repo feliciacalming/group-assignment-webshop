@@ -12,8 +12,8 @@ const assortmentInfoText: HTMLParagraphElement = document.createElement("p");
 const assortmentAmount: HTMLParagraphElement = document.createElement("h5");
 const filterButton: HTMLButtonElement = document.createElement("button");
 
-// const productsOnDisplay: HTMLElement = document.createElement("section");
-// productsOnDisplay.classList.add("productsOnDisplay");
+const productsOnDisplay: HTMLElement = document.createElement("section");
+productsOnDisplay.classList.add("productsOnDisplay");
 
 assortmentHeading.innerHTML = "Julgranskulor";
 assortmentInfoText.innerHTML =
@@ -47,6 +47,8 @@ assortmentContainer.appendChild(filterButton);
 /***** Funktioner *****/
 
 function displayProducts(productItems: ChristmasBauble[]) {
+  productsOnDisplay.innerHTML = "";
+
   for (let i = 0; i < productItems.length; i++) {
     let productContainer: HTMLDivElement = document.createElement("div");
     let productTitle: HTMLHeadingElement = document.createElement("h5");
@@ -71,16 +73,16 @@ function displayProducts(productItems: ChristmasBauble[]) {
     productContainer.appendChild(productTitle);
     productContainer.appendChild(productPrice);
     productContainer.appendChild(productButton);
-    // productsOnDisplay.appendChild(productContainer);
+    productsOnDisplay.appendChild(productContainer);
 
     // productContainer.addEventListener("click", () => {
     //   displayProductdetails(productItems[i]);
-
+    // });
     //   document.location.href = "productdetails.html";
     // });
 
     (document.querySelector("main") as HTMLElement).appendChild(
-      productContainer
+      productsOnDisplay
     );
 
     productButton.addEventListener("click", () => {
