@@ -1,6 +1,9 @@
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
-import { displayCounter } from "./functions.ts/cartFunctions";
+import {
+  displayCounter,
+  listFromLocalStorage,
+} from "./functions.ts/cartFunctions";
 import { ProductsInCart } from "./models/ProductsInCart";
 import { addToCart } from "../ts/functions.ts/cartFunctions";
 
@@ -77,10 +80,30 @@ export function displayProductdetails() {
         addToCart(productItems[i]);
       });
 
-      productInCartButtonMinus.addEventListener("click", () => {
-        console.log("You clicked on - ");
-        addToCart(productItems[i]);
-      });
+      for (let i = 0; i < listFromLocalStorage.length; i++) {
+        productInCartButtonMinus.addEventListener("click", () => {
+          console.log("You clicked on - ");
+          listFromLocalStorage[i].amount--;
+          localStorage.setItem(
+            "product",
+            JSON.stringify(listFromLocalStorage)
+          );
+          if (listFromLocalStorage[i].amount === 0) {
+            let index = listFromLocalStorage.indexOf(
+              listFromLocalStorage[i]
+            ); // gör en variabel av listpositioonen som jag vill radera.
+            listFromLocalStorage.splice(index, 1); // ta bort produkten ur varukorgen om amount blir noll..
+            let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
+            localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
+          }
+        });
+
+        let amountOfProductsText: HTMLHeadingElement =
+          document.createElement("h3");
+        amountOfProductsText.classList.add("productTotalText");
+        amountOfProductsText.innerHTML =
+          listFromLocalStorage[i].amount.toString();
+      }
     }
   }
 }
