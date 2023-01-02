@@ -6,6 +6,12 @@
   }
 }
 
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @mixin offer-panel {
   display: flex;
   position: relative;

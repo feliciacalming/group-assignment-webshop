@@ -1,6 +1,12 @@
 @use "mixins" as mix;
 @use "variables" as var;
 
+.shoppingcart-container {
+  background-color: white;
+  @include mix.flexCenter;
+  flex-direction: column;
+}
+
 .headingInCart {
   margin-top: 70px;
   display: flex;
@@ -8,27 +14,24 @@
   align-items: center;
 
   h3 {
-    color: rgb(255, 255, 255);
+    color: var.$color-secondary-dark;
   }
 }
 
 .shoppingCartPage {
   margin-top: 4px;
-  display: flex;
+  @include mix.flexCenter;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
   display: inline-flex;
 }
 
 .productInCart {
-  display: flex;
+  @include mix.flexCenter;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: var.$product-background;
   width: 70%;
   margin: 2px;
+  color: black;
 
   &__image {
     width: 100px;
@@ -37,7 +40,8 @@
   &__title {
     margin-top: 15px;
     margin-bottom: 5;
-    color: rgb(222, 72, 94);
+    font-family: var.$text-secondary;
+    // color: rgb(222, 72, 94);
   }
 
   &__price {

@@ -2,13 +2,16 @@
 @use "variables" as var;
 
 .productpage-container {
-  display: flex;
+  @include mix.flexCenter;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: white;
   color: var.$color-secondary-dark;
 }
+
+// .productsOnDisplay {
+//   @include mix.flexCenter;
+//   flex-direction: column;
+// }
 
 .hide {
   display: none;
