@@ -127,25 +127,6 @@ function displayProductsInCart() {
   }
 }
 
-//håller på med funktion för att ändra antalet av en viss produkt i varukorgen
-/* 
-productInCartButtonPlus.addEventListener("click", () => {
-    let currentAmountOfProducts = parseInt(
-      amountOfProductsText.innerHTML
-    );
-    let addedAmount = currentAmountOfProducts + 1;
-    amountOfProductsText.innerHTML = addedAmount.toString();
-
-    listFromLocalStorage = JSON.parse(
-      localStorage.getItem("product") || "[]"
-    );
-    listFromLocalStorage.push(listFromLocalStorage[i]);
-    localStorage.setItem(
-      "product",
-      JSON.stringify(listFromLocalStorage)
-    );
-  });*/
-
 function displayProductsSum() {
   let sumAmount = 0;
   for (let i = 0; i < listFromLocalStorage.length; i++) {

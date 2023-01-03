@@ -42,7 +42,7 @@
 
     @include mix.desktop {
       margin-top: 150px;
-      width: 600px;
+      width: 100%;
     }
   }
 
@@ -120,6 +120,7 @@
     background-color: rgb(227, 95, 115);
     cursor: pointer;
     width: 120px;
+    height: 25px;
 
     @include mix.desktop {
       scale: 1;
