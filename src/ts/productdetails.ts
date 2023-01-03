@@ -30,17 +30,12 @@ export function displayProductdetails() {
       let productDetailPrice: HTMLParagraphElement =
         document.createElement("h5");
 
-      let productDetailButton: HTMLButtonElement =
-        document.createElement("button");
-
       productDetailContainer.classList.add("productdetail");
       productDetailTitle.classList.add("productdetail__title");
       productDetailImage.classList.add("productdetail__image");
       productDescribtion.classList.add("productdetail__paragraph");
       productDetailPrice.classList.add("productdetail__price");
-      productDetailButton.classList.add(
-        "productdetail__buttonAddToCart"
-      );
+
       containerOfImg.classList.add("productdetail__containerOfImg");
       containerOfInfo.classList.add("productdetail__containerOfInfo");
 
@@ -49,7 +44,6 @@ export function displayProductdetails() {
 
       productDescribtion.innerText = productItems[i].description;
       productDetailTitle.innerHTML = productItems[i].name;
-      productDetailButton.innerHTML = "Lägg i varukorg";
 
       productDetailContainer.appendChild(containerOfImg);
       containerOfImg.appendChild(productDetailImage);
@@ -57,7 +51,6 @@ export function displayProductdetails() {
       containerOfInfo.appendChild(productDetailTitle);
       containerOfInfo.appendChild(productDescribtion);
       containerOfInfo.appendChild(productDetailPrice);
-      containerOfInfo.appendChild(productDetailButton);
 
       (document.querySelector("main") as HTMLElement).appendChild(
         productDetailContainer
@@ -71,10 +64,17 @@ export function displayProductdetails() {
       });
 
       for (let i = 0; i < listFromLocalStorage.length; i++) {
+        let containerOfButtons: HTMLDivElement =
+          document.createElement("div");
         let productInCartButtonMinus: HTMLButtonElement =
+          document.createElement("button");
+        let productDetailButton: HTMLButtonElement =
           document.createElement("button");
         let amountOfProductsText: HTMLSpanElement =
           document.createElement("span");
+        productDetailButton.classList.add(
+          "productdetail__buttonAddToCart"
+        );
 
         productInCartButtonMinus.addEventListener("click", () => {
           console.log("You clicked on - ");
@@ -92,14 +92,26 @@ export function displayProductdetails() {
             localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
           }
         });
+        containerOfButtons.classList.add(
+          "productdetail__containerOfButtons"
+        );
         productInCartButtonMinus.textContent = "-";
         productInCartButtonPlus.textContent = "+";
+        productDetailButton.innerHTML = "Lägg i varukorg";
+
         containerOfInfo.appendChild(productInCartButtonMinus);
         containerOfInfo.appendChild(amountOfProductsText);
         containerOfInfo.appendChild(productInCartButtonPlus);
         amountOfProductsText.classList.add("productTotalText");
+        containerOfButtons.appendChild(productInCartButtonMinus);
+        containerOfButtons.appendChild(amountOfProductsText);
+        containerOfButtons.appendChild(productInCartButtonPlus);
         amountOfProductsText.innerHTML =
           listFromLocalStorage[i].amount.toString();
+        productDetailButton.appendChild(containerOfButtons);
+        containerOfInfo.appendChild(productDetailButton);
+        productDetailContainer.appendChild(containerOfButtons);
+        containerOfInfo.appendChild(containerOfButtons);
       }
     }
   }
