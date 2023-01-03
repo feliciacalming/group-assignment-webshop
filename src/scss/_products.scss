@@ -102,9 +102,10 @@
 .productsOnDisplay {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   display: inline-flex;
+  margin-bottom: 20px;
 }
 
 .productpage {
@@ -136,7 +137,7 @@
     cursor: pointer;
 
     &:hover {
-      background-color: rgba(254, 221, 221, 0.702);
+      background-color: rgba(238, 238, 238, 0.702);
     }
 
     @include mix.desktop {
@@ -177,6 +178,9 @@
     color: white;
     background-color: rgb(227, 95, 115);
     cursor: pointer;
+    &:hover {
+      background-color: rgb(255, 119, 139);
+    }
 
     @include mix.desktop {
       scale: 1.2;
