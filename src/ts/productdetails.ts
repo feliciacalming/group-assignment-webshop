@@ -95,6 +95,7 @@ export function displayProductdetails() {
         containerOfButtons.classList.add(
           "productdetail__containerOfButtons"
         );
+
         productInCartButtonMinus.textContent = "-";
         productInCartButtonPlus.textContent = "+";
         productDetailButton.innerHTML = "Lägg i varukorg";
