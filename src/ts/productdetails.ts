@@ -99,18 +99,14 @@ export function displayProductdetails() {
         productInCartButtonPlus.textContent = "+";
         productDetailButton.innerHTML = "Lägg i varukorg";
 
-        containerOfInfo.appendChild(productInCartButtonMinus);
-        containerOfInfo.appendChild(amountOfProductsText);
-        containerOfInfo.appendChild(productInCartButtonPlus);
+        amountOfProductsText.innerHTML =
+          listFromLocalStorage[i].amount.toString();
+
         amountOfProductsText.classList.add("productTotalText");
         containerOfButtons.appendChild(productInCartButtonMinus);
         containerOfButtons.appendChild(amountOfProductsText);
         containerOfButtons.appendChild(productInCartButtonPlus);
-        amountOfProductsText.innerHTML =
-          listFromLocalStorage[i].amount.toString();
-        productDetailButton.appendChild(containerOfButtons);
-        containerOfInfo.appendChild(productDetailButton);
-        productDetailContainer.appendChild(containerOfButtons);
+        containerOfButtons.appendChild(productDetailButton);
         containerOfInfo.appendChild(containerOfButtons);
       }
     }
