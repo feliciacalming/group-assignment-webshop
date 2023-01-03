@@ -3,8 +3,16 @@
 
 .content {
   .productsContainer{
+      @include mix.desktop{
+        position: relative;
+        display: flex;
+        flex-flow: row wrap;
+        width: 60%;
+        column-gap: 25px;
+        row-gap: 25px;
+      }
       flex-direction: column;
-      background-color: var.$dark-red;
+      background-color: var.$christmas-green;
       width: 90%;
       margin: 25px auto 0 auto;
       color: white;
@@ -12,11 +20,18 @@
       border-top-left-radius: 25px;
       height: auto;
     .productInCartCheckout {
+      @include mix.desktop{
+        width: 20%;
+        margin-left: 30px;
+        margin-right: 0px;
+      }
       @include mix.flexCenter;
       flex-direction: column;
-      background-color: var.$dark-red;
-      width: 90%;
-      margin: 0 auto 0 auto;
+      background-color: #ffffff;
+      color: black;
+      width: 80%;
+      margin: 25px auto 25px auto;
+      border-radius: 25px;
 
       &__image {
         width: 100px;
@@ -31,25 +46,46 @@
       &__price {
         margin: 0;
       }
+
+      &__amount{
+        background-color: #fff;
+        padding: 0px 5px 0px 5px;
+        border-radius: 50%;
+      }
     }
   }
 
   .productInCartButtonContainerCheckout {
     display: flex;
     column-gap: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    .productInCartButton{
+      &__plus, &__minus{
+        @include mix.amountButtons;
+      }
+    }
   }
 
   .checkout {
+    @include mix.desktop {
+      width: 60%;
+    }
     width: 90%;
     height: auto;
-    background-color: var.$dark-red;
+    background-color: var.$christmas-green;
     border-bottom-right-radius: 25px;
     border-bottom-left-radius: 25px;
     margin: -10px auto 30px auto;
     form {
+      @include mix.desktop {
+        margin: 25px;
+        grid-template-columns: 0.25fr 0.25fr;
+        grid-template-rows: 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr 0.25fr;
+      }
       display: grid;
       padding: 10px;
+      margin-left: 7%;
       text-align: left !important;
       grid-auto-flow: column;
       grid-template-columns: 1fr 1fr;
@@ -61,10 +97,13 @@
         "fname lname"
         "cc-text cc-text"
         "cc cc"
-        "ccv-text ccv-text"
+        "ccv-text submit-text"
         "ccv submit";
       input {
-        width: 80%;
+        @include mix.desktop {
+          width: 50%;
+        }
+        width: 78%;
         border: none;
         outline: none;
         padding: 5px;
@@ -78,6 +117,9 @@
         margin-left: 10px;
       }
       .cc {
+        @include mix.desktop {
+          width: 75%;
+        }
         width: 90%;
       }
     }
@@ -107,6 +149,15 @@
     }
     .ccv-text {
       grid-area: ccv-text;
+    }
+    .submit-text {
+      @include mix.desktop{
+        font-size: calc(2px + 1vw);
+      }
+      font-size: calc(10px + 1vw);
+      text-decoration: underline;
+      margin-left: 10px;
+      grid-area: submit-text;
     }
   }
 }

@@ -9,6 +9,12 @@ listFromLocalStorage = JSON.parse(
 let sum: number = 0;
 
 function displayPaymentGateway(){
+    let sumAmount = 0;
+    for (let i = 0; i < listFromLocalStorage.length; i++) {
+      sumAmount +=
+        listFromLocalStorage[i].product.price * listFromLocalStorage[i].amount;
+    }
+
     let checkoutContainer: HTMLDivElement = document.createElement("div");
     let checkoutForm: HTMLFormElement = document.createElement("form");
     let labelFname: HTMLLabelElement = document.createElement("label");
@@ -19,6 +25,7 @@ function displayPaymentGateway(){
     let inputCc: HTMLInputElement = document.createElement("input");
     let labelCcv: HTMLLabelElement = document.createElement("label");
     let inputCcv: HTMLInputElement = document.createElement("input");
+    let labelSubmit: HTMLLabelElement = document.createElement("label");
     let submitButton: HTMLInputElement = document.createElement("input");
 
     checkoutContainer.classList.add("checkout");
@@ -30,18 +37,22 @@ function displayPaymentGateway(){
     inputCc.classList.add("cc");
     labelCcv.classList.add("ccv-text");
     inputCcv.classList.add("ccv");
+    labelSubmit.classList.add("submit-text");
+    submitButton.classList.add("purchase-button");
 
     /* label setAttributes */
     labelFname.setAttribute("for", "fname");
     labelLname.setAttribute("for", "lname");
     labelCc.setAttribute("for", "cc");
     labelCcv.setAttribute("for", "ccv");
+    labelSubmit.setAttribute("for", "submit");
 
     /* label innerText */
     labelFname.innerText = "First name:";
     labelLname.innerText = "Last name:";
     labelCc.innerText = "CC:";
     labelCcv.innerText = "CCV:";
+    labelSubmit.innerText = "Total belopp: " + sumAmount.toString() + "kr";
 
     /* input setAttributes */
     inputFname.setAttribute("type", "text");
@@ -66,6 +77,7 @@ function displayPaymentGateway(){
 
     submitButton.setAttribute("type", "submit");
     submitButton.setAttribute("name", "submit");
+    submitButton.setAttribute("value", "Betala");
 
     checkoutForm.setAttribute("onsubmit", "return false");
     
@@ -79,6 +91,7 @@ function displayPaymentGateway(){
     checkoutForm.appendChild(inputCc);
     checkoutForm.appendChild(labelCcv);
     checkoutForm.appendChild(inputCcv);
+    checkoutForm.appendChild(labelSubmit);
     checkoutForm.appendChild(submitButton);
 
     (document.querySelector(".content") as HTMLElement).appendChild(
@@ -206,6 +219,25 @@ function displayProductsInCart() {
       });
     }
   }
+
+  function displayProductsSum() {
+    let sumAmount = 0;
+    for (let i = 0; i < listFromLocalStorage.length; i++) {
+      sumAmount +=
+        listFromLocalStorage[i].product.price * listFromLocalStorage[i].amount;
+    }
+  
+    let productTotalText: HTMLParagraphElement = document.createElement("p");
+  
+    productTotalText.classList.add("productTotalText");
+  
+    productTotalText.innerHTML = "Totalbelopp: " + sumAmount + "kr";
+  
+    (document.querySelector(".purchase-button") as HTMLElement).appendChild(
+      productTotalText
+    );
+  }
 displayProductsInCart();
 displayPaymentGateway();
 displayCounter();
+displayProductsSum();

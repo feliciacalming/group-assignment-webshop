@@ -336,6 +336,9 @@ footer {
 }
 
 .marquee {
+  @include mix.desktop {
+    animation: marqueedesktop 15s linear infinite;
+  }
   white-space: nowrap;
   overflow: hidden;
   display: inline-block;
@@ -355,6 +358,15 @@ footer {
   }
   100% {
     transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes marqueedesktop {
+  0% {
+    transform: translate3d(195%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-195%, 0, 0);
   }
 }
 
