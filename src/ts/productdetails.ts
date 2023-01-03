@@ -63,53 +63,52 @@ export function displayProductdetails() {
         addToCart(productItems[i]);
       });
 
-      for (let i = 0; i < listFromLocalStorage.length; i++) {
-        let containerOfButtons: HTMLDivElement =
-          document.createElement("div");
-        let productInCartButtonMinus: HTMLButtonElement =
-          document.createElement("button");
-        let productDetailButton: HTMLButtonElement =
-          document.createElement("button");
-        let amountOfProductsText: HTMLSpanElement =
-          document.createElement("span");
-        productDetailButton.classList.add(
-          "productdetail__buttonAddToCart"
+      // for (let i = 0; i < listFromLocalStorage.length; i++) {
+      let containerOfButtons: HTMLDivElement =
+        document.createElement("div");
+      let productInCartButtonMinus: HTMLButtonElement =
+        document.createElement("button");
+      let productDetailButton: HTMLButtonElement =
+        document.createElement("button");
+      let amountOfProductsText: HTMLSpanElement =
+        document.createElement("span");
+      productDetailButton.classList.add(
+        "productdetail__buttonAddToCart"
+      );
+
+      productInCartButtonMinus.addEventListener("click", () => {
+        console.log("You clicked on - ");
+        listFromLocalStorage[i].amount--;
+        localStorage.setItem(
+          "product",
+          JSON.stringify(listFromLocalStorage)
         );
+        if (listFromLocalStorage[i].amount === 0) {
+          let index = listFromLocalStorage.indexOf(
+            listFromLocalStorage[i]
+          ); // gör en variabel av listpositioonen som jag vill radera.
+          listFromLocalStorage.splice(index, 1); // ta bort produkten ur varukorgen om amount blir noll..
+          let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
+          localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
+        }
+      });
+      containerOfButtons.classList.add(
+        "productdetail__containerOfButtons"
+      );
+      productInCartButtonMinus.textContent = "-";
+      productInCartButtonPlus.textContent = "+";
+      productDetailButton.innerHTML = "Lägg i varukorg";
 
-        productInCartButtonMinus.addEventListener("click", () => {
-          console.log("You clicked on - ");
-          listFromLocalStorage[i].amount--;
-          localStorage.setItem(
-            "product",
-            JSON.stringify(listFromLocalStorage)
-          );
-          if (listFromLocalStorage[i].amount === 0) {
-            let index = listFromLocalStorage.indexOf(
-              listFromLocalStorage[i]
-            ); // gör en variabel av listpositioonen som jag vill radera.
-            listFromLocalStorage.splice(index, 1); // ta bort produkten ur varukorgen om amount blir noll..
-            let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
-            localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
-          }
-        });
-        containerOfButtons.classList.add(
-          "productdetail__containerOfButtons"
-        );
+      amountOfProductsText.innerHTML =
+        listFromLocalStorage[i].amount.toString();
 
-        productInCartButtonMinus.textContent = "-";
-        productInCartButtonPlus.textContent = "+";
-        productDetailButton.innerHTML = "Lägg i varukorg";
-
-        amountOfProductsText.innerHTML =
-          listFromLocalStorage[i].amount.toString();
-
-        amountOfProductsText.classList.add("productTotalText");
-        containerOfButtons.appendChild(productInCartButtonMinus);
-        containerOfButtons.appendChild(amountOfProductsText);
-        containerOfButtons.appendChild(productInCartButtonPlus);
-        containerOfButtons.appendChild(productDetailButton);
-        containerOfInfo.appendChild(containerOfButtons);
-      }
+      amountOfProductsText.classList.add("productTotalText");
+      containerOfButtons.appendChild(productInCartButtonMinus);
+      containerOfButtons.appendChild(amountOfProductsText);
+      containerOfButtons.appendChild(productInCartButtonPlus);
+      containerOfButtons.appendChild(productDetailButton);
+      containerOfInfo.appendChild(containerOfButtons);
+      // }
     }
   }
 }
