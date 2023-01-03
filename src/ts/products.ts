@@ -20,7 +20,7 @@ assortmentInfoText.innerHTML =
   "Alla våra fantastiska julkulor är gjorda av glas av högsta kvalité. Alla produkter är munblåsta och handmålade, vilket gör varje julgranskula unik.";
 assortmentAmount.innerHTML =
   "Visar " + productItems.length.toString() + " produkter";
-filterButton.innerHTML = "Filter";
+filterButton.innerHTML = "Filter +";
 
 //eventlistener för filter
 filterButton.addEventListener("click", () => {
@@ -37,8 +37,8 @@ buttonContainer.classList.add("amountAndButton");
 
 assortmentContainer.appendChild(assortmentHeading);
 assortmentContainer.appendChild(assortmentInfoText);
-buttonContainer.appendChild(assortmentAmount);
 buttonContainer.appendChild(filterButton);
+buttonContainer.appendChild(assortmentAmount);
 assortmentContainer.appendChild(buttonContainer);
 (document.querySelector("main") as HTMLElement).appendChild(
   assortmentContainer
@@ -122,6 +122,12 @@ useFilterBtn.addEventListener("click", () => {
   toggleFilter();
   displayProducts(filteredProducts);
 });
+
+// clearFilterBtn.addEventListener("click", () => {
+//   filteredProducts.splice(0, filteredProducts.length);
+//   toggleFilter();
+//   displayProducts(productItems);
+// });
 
 filterHeading.appendChild(filterTitle);
 filterHeading.appendChild(exitBtn);

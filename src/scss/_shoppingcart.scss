@@ -47,6 +47,15 @@
   &__price {
     margin: 0;
   }
+
+  &__amount {
+    @include mix.productAmount;
+  }
+
+  &__buttonMinus,
+  &__buttonPlus {
+    @include mix.amountButtons;
+  }
 }
 
 .productInCartButtonContainer {
