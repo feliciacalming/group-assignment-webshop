@@ -15,12 +15,16 @@ export function displayProductdetails() {
 
   for (let i = 0; i < productItems.length; i++) {
     if (productItems[i].id.toString() === newId) {
-      let containerOfImg: HTMLDivElement = document.createElement("div");
-      let containerOfInfo: HTMLDivElement = document.createElement("div");
+      let containerOfImg: HTMLDivElement =
+        document.createElement("div");
+      let containerOfInfo: HTMLDivElement =
+        document.createElement("div");
       let productDetailContainer: HTMLDivElement =
         document.createElement("div");
-      let productDetailTitle: HTMLHeadingElement = document.createElement("h5");
-      let productDetailImage: HTMLImageElement = document.createElement("img");
+      let productDetailTitle: HTMLHeadingElement =
+        document.createElement("h5");
+      let productDetailImage: HTMLImageElement =
+        document.createElement("img");
       let productDescribtion: HTMLParagraphElement =
         document.createElement("p");
       let productDetailPrice: HTMLParagraphElement =
@@ -60,27 +64,37 @@ export function displayProductdetails() {
       });
 
       // for (let i = 0; i < listFromLocalStorage.length; i++) {
-      let containerOfButtons: HTMLDivElement = document.createElement("div");
+      let containerOfButtons: HTMLDivElement =
+        document.createElement("div");
       let productInCartButtonMinus: HTMLButtonElement =
         document.createElement("button");
       let productDetailButton: HTMLButtonElement =
         document.createElement("button");
       let amountOfProductsText: HTMLSpanElement =
         document.createElement("span");
-      productDetailButton.classList.add("productdetail__buttonAddToCart");
+      productDetailButton.classList.add(
+        "productdetail__buttonAddToCart"
+      );
 
       productInCartButtonMinus.addEventListener("click", () => {
         console.log("You clicked on - ");
         listFromLocalStorage[i].amount--;
-        localStorage.setItem("product", JSON.stringify(listFromLocalStorage));
+        localStorage.setItem(
+          "product",
+          JSON.stringify(listFromLocalStorage)
+        );
         if (listFromLocalStorage[i].amount === 0) {
-          let index = listFromLocalStorage.indexOf(listFromLocalStorage[i]); // gör en variabel av listpositioonen som jag vill radera.
+          let index = listFromLocalStorage.indexOf(
+            listFromLocalStorage[i]
+          ); // gör en variabel av listpositioonen som jag vill radera.
           listFromLocalStorage.splice(index, 1); // ta bort produkten ur varukorgen om amount blir noll..
           let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
           localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
         }
       });
-      containerOfButtons.classList.add("productdetail__containerOfButtons");
+      containerOfButtons.classList.add(
+        "productdetail__containerOfButtons"
+      );
       productInCartButtonMinus.textContent = "-";
       productInCartButtonPlus.textContent = "+";
       productDetailButton.innerHTML = "Lägg i varukorg";
