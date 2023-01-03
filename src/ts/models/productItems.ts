@@ -11,7 +11,7 @@ export let productItems: ChristmasBauble[] = [
     id: 1,
     description:
       "Röd munblåst julkula i glas med handmålad dekoration, ca 12 cm Ø.",
-    color: "red",
+    color: "röd",
     size: 12,
   },
 
@@ -23,7 +23,7 @@ export let productItems: ChristmasBauble[] = [
     id: 2,
     description:
       "Vår mest exklusiva julkula. Guldfärgad i munblåst glas med handmålad dekoration, ca 12 cm Ø.",
-    color: "gold",
+    color: "guld",
     size: 12,
   },
 
@@ -35,7 +35,7 @@ export let productItems: ChristmasBauble[] = [
     id: 3,
     description:
       "Blå munblåst julkula i glas med handmålad dekoration, ca 8 cm Ø.",
-    color: "blue",
+    color: "blå",
     size: 8,
   },
   {
@@ -46,7 +46,7 @@ export let productItems: ChristmasBauble[] = [
     id: 4,
     description:
       "Grön munblåst julkula i glas med handmålad dekoration, ca 8 cm Ø.",
-    color: "green",
+    color: "grön",
     size: 8,
   },
 
@@ -58,7 +58,7 @@ export let productItems: ChristmasBauble[] = [
     id: 5,
     description:
       "Lila munblåst julkula i glas med handmålad dekoration, ca 8 cm Ø.",
-    color: "purple",
+    color: "lila",
     size: 8,
   },
 
@@ -70,7 +70,7 @@ export let productItems: ChristmasBauble[] = [
     id: 6,
     description:
       "Ljusblå munblåst julkula i glas med handmålad dekoration, ca 12 cm Ø.",
-    color: "blue",
+    color: "blå",
     size: 12,
   },
   {
@@ -81,7 +81,7 @@ export let productItems: ChristmasBauble[] = [
     id: 7,
     description:
       "Mörkblå munblåst julkula i glas med handmålad dekoration, ca 8 cm Ø.",
-    color: "blue",
+    color: "blå",
     size: 8,
   },
   {
@@ -92,7 +92,7 @@ export let productItems: ChristmasBauble[] = [
     id: 8,
     description:
       "Rosa munblåst julkula i glas med handmålad dekoration, ca 8 cm Ø.",
-    color: "pink",
+    color: "rosa lila",
     size: 8,
   },
 ];

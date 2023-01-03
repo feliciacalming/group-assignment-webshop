@@ -3,26 +3,17 @@ import { productItems } from "./models/productItems";
 import { ProductsInCart } from "./models/ProductsInCart";
 import { colors, size } from "./models/filterOptions";
 import { displayProductdetails } from "./productdetails";
-import {
-  addToCart,
-  displayCounter,
-} from "./functions.ts/cartFunctions";
+import { addToCart, displayCounter } from "./functions.ts/cartFunctions";
 import { toggleFilter } from "./functions.ts/filterFunctions";
 
-const assortmentContainer: HTMLDivElement =
-  document.createElement("div");
-const assortmentHeading: HTMLHeadingElement =
-  document.createElement("h2");
-const assortmentInfoText: HTMLParagraphElement =
-  document.createElement("p");
-const assortmentAmount: HTMLParagraphElement =
-  document.createElement("h5");
+const assortmentContainer: HTMLDivElement = document.createElement("div");
+const assortmentHeading: HTMLHeadingElement = document.createElement("h2");
+const assortmentInfoText: HTMLParagraphElement = document.createElement("p");
+const assortmentAmount: HTMLParagraphElement = document.createElement("h5");
 const buttonContainer: HTMLDivElement = document.createElement("div");
-const filterButton: HTMLButtonElement =
-  document.createElement("button");
+const filterButton: HTMLButtonElement = document.createElement("button");
 
-const productsOnDisplay: HTMLElement =
-  document.createElement("section");
+const productsOnDisplay: HTMLElement = document.createElement("section");
 
 assortmentHeading.innerHTML = "Julgranskulor";
 assortmentInfoText.innerHTML =
@@ -61,16 +52,11 @@ function displayProducts(productItems: ChristmasBauble[]) {
   productsOnDisplay.innerHTML = "";
 
   for (let i = 0; i < productItems.length; i++) {
-    let productContainer: HTMLDivElement =
-      document.createElement("div");
-    let productTitle: HTMLHeadingElement =
-      document.createElement("h5");
-    let productImage: HTMLImageElement =
-      document.createElement("img");
-    let productPrice: HTMLParagraphElement =
-      document.createElement("h5");
-    let productButton: HTMLButtonElement =
-      document.createElement("button");
+    let productContainer: HTMLDivElement = document.createElement("div");
+    let productTitle: HTMLHeadingElement = document.createElement("h5");
+    let productImage: HTMLImageElement = document.createElement("img");
+    let productPrice: HTMLParagraphElement = document.createElement("h5");
+    let productButton: HTMLButtonElement = document.createElement("button");
 
     productContainer.classList.add("product");
     productTitle.classList.add("product__title");
@@ -92,8 +78,7 @@ function displayProducts(productItems: ChristmasBauble[]) {
     productsOnDisplay.appendChild(productContainer);
 
     productImage.addEventListener("click", () => {
-      document.location.href =
-        "productdetails.html?id=" + productItems[i].id;
+      document.location.href = "productdetails.html?id=" + productItems[i].id;
     });
 
     (document.querySelector("main") as HTMLElement).appendChild(
@@ -107,12 +92,8 @@ function displayProducts(productItems: ChristmasBauble[]) {
 }
 
 //FILTER FUNKTIONER
-const filterContainer = document.getElementById(
-  "filter"
-) as HTMLDivElement;
-const filterHeading = document.getElementById(
-  "filter-heading"
-) as HTMLElement;
+const filterContainer = document.getElementById("filter") as HTMLDivElement;
+const filterHeading = document.getElementById("filter-heading") as HTMLElement;
 const filterTitle = document.createElement("h1");
 const exitBtn = document.createElement("button");
 const useFilterBtn = document.createElement("button");
@@ -161,8 +142,7 @@ function displayColorOptions() {
     let colorFilters: HTMLElement = document.getElementById(
       "color"
     ) as HTMLElement;
-    let colorContainer: HTMLDivElement =
-      document.createElement("div");
+    let colorContainer: HTMLDivElement = document.createElement("div");
     let checkbox: HTMLInputElement = document.createElement("input");
     checkbox.type = "checkbox";
     let colorname: HTMLHeadingElement = document.createElement("h4");
@@ -171,7 +151,33 @@ function displayColorOptions() {
     checkbox.classList.add("color__checkbox");
     colorname.classList.add("color__name");
 
-    colorname.innerHTML = colors[i];
+    colorname.innerHTML = colors[i].title;
+
+    checkbox.addEventListener("click", () => {
+      if (checkbox.checked === true) {
+        for (let i = 0; i < productItems.length; i++) {
+          if (
+            productItems[i].color
+              .toLowerCase()
+              .includes(colorname.innerHTML.toLowerCase())
+          ) {
+            filteredProducts.push(productItems[i]);
+            console.log(filteredProducts);
+          }
+        }
+      }
+      if (checkbox.checked === false) {
+        for (let i = 0; i < filteredProducts.length; i++) {
+          if (
+            filteredProducts[i].color
+              .toLowerCase()
+              .includes(colorname.innerHTML.toLocaleLowerCase())
+          ) {
+            filteredProducts.splice(i, 1);
+          }
+        }
+      }
+    });
 
     colorContainer.appendChild(checkbox);
     colorContainer.appendChild(colorname);
@@ -202,9 +208,7 @@ function displaySizeOptions() {
     checkbox.addEventListener("click", () => {
       if (checkbox.checked === true) {
         for (let i = 0; i < productItems.length; i++) {
-          if (
-            sizeNumber.innerHTML === productItems[i].size.toString()
-          ) {
+          if (sizeNumber.innerHTML === productItems[i].size.toString()) {
             filteredProducts.push(productItems[i]);
 
             /* Ska lägga till en knapp för "Använd filter", och när man trycker på den ska den köra toggleFilter för att stänga
