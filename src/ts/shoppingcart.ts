@@ -52,7 +52,7 @@ function displayProductsInCart() {
 
     productInCartTitle.innerHTML = listFromLocalStorage[i].product.name;
     productInCartPrice.innerHTML =
-      listFromLocalStorage[i].product.price.toString() + " kr";
+      listFromLocalStorage[i].product.price.toString() + " kr/st.";
     amountOfProductsText.innerHTML = listFromLocalStorage[i].amount.toString(); // det jag vill sätta som innerhtml måste vara positionen av produktens amount
     // och eftersom listan renderas om/ laddas om , följer amount med i loopen.
 
@@ -130,7 +130,7 @@ function displayClearCartButton() {
     document.createElement("button");
 
   productsClearContainer.classList.add("productsClearContainer");
-  productInCartButtonClear.classList.add("productInCartButton__clear");
+  productInCartButtonClear.classList.add("productInCart__buttonClear");
 
   productInCartButtonClear.textContent = "Rensa varukorg";
 
@@ -150,7 +150,7 @@ function displayToCheckout() {
   let productToCheckoutButton: HTMLButtonElement =
     document.createElement("button");
 
-  productToCheckoutButton.classList.add("productToCheckoutButton");
+  productToCheckoutButton.classList.add("productInCart__buttonCheckout");
 
   productToCheckoutButton.textContent = "Till kassa";
 
