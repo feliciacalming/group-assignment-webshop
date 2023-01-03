@@ -30,6 +30,13 @@ export function displayProductdetails() {
       let productDetailPrice: HTMLParagraphElement =
         document.createElement("h5");
 
+      let productDetailButton: HTMLButtonElement =
+        document.createElement("button");
+
+      productDetailButton.classList.add(
+        "productdetail__buttonAddToCart"
+      );
+
       productDetailContainer.classList.add("productdetail");
       productDetailTitle.classList.add("productdetail__title");
       productDetailImage.classList.add("productdetail__image");
@@ -45,71 +52,25 @@ export function displayProductdetails() {
       productDescribtion.innerText = productItems[i].description;
       productDetailTitle.innerHTML = productItems[i].name;
 
+      (document.querySelector("main") as HTMLElement).appendChild(
+        productDetailContainer
+      );
+
+      productDetailButton.innerHTML = "Lägg i varukorg";
+
       productDetailContainer.appendChild(containerOfImg);
       containerOfImg.appendChild(productDetailImage);
       productDetailContainer.appendChild(containerOfInfo);
       containerOfInfo.appendChild(productDetailTitle);
       containerOfInfo.appendChild(productDescribtion);
       containerOfInfo.appendChild(productDetailPrice);
+      containerOfInfo.appendChild(productDetailButton);
 
-      (document.querySelector("main") as HTMLElement).appendChild(
-        productDetailContainer
-      );
-      let productInCartButtonPlus: HTMLButtonElement =
-        document.createElement("button");
-
-      productInCartButtonPlus.addEventListener("click", () => {
-        console.log("You clicked on + ");
+      productDetailButton.addEventListener("click", () => {
         addToCart(productItems[i]);
       });
-
-      // for (let i = 0; i < listFromLocalStorage.length; i++) {
-      let containerOfButtons: HTMLDivElement =
-        document.createElement("div");
-      let productInCartButtonMinus: HTMLButtonElement =
-        document.createElement("button");
-      let productDetailButton: HTMLButtonElement =
-        document.createElement("button");
-      let amountOfProductsText: HTMLSpanElement =
-        document.createElement("span");
-      productDetailButton.classList.add(
-        "productdetail__buttonAddToCart"
-      );
-
-      productInCartButtonMinus.addEventListener("click", () => {
-        console.log("You clicked on - ");
-        listFromLocalStorage[i].amount--;
-        localStorage.setItem(
-          "product",
-          JSON.stringify(listFromLocalStorage)
-        );
-        if (listFromLocalStorage[i].amount === 0) {
-          let index = listFromLocalStorage.indexOf(
-            listFromLocalStorage[i]
-          ); // gör en variabel av listpositioonen som jag vill radera.
-          listFromLocalStorage.splice(index, 1); // ta bort produkten ur varukorgen om amount blir noll..
-          let savedCart = JSON.stringify(listFromLocalStorage); // gör en variabel av listan jag vill skicka upp till localstorage.
-          localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
-        }
-      });
-      containerOfButtons.classList.add(
-        "productdetail__containerOfButtons"
-      );
-      productInCartButtonMinus.textContent = "-";
-      productInCartButtonPlus.textContent = "+";
-      productDetailButton.innerHTML = "Lägg i varukorg";
-
-      amountOfProductsText.innerHTML =
-        listFromLocalStorage[i].amount.toString();
-
-      amountOfProductsText.classList.add("productTotalText");
-      containerOfButtons.appendChild(productInCartButtonMinus);
-      containerOfButtons.appendChild(amountOfProductsText);
-      containerOfButtons.appendChild(productInCartButtonPlus);
-      containerOfButtons.appendChild(productDetailButton);
-      containerOfInfo.appendChild(containerOfButtons);
-      // }
     }
   }
 }
 displayProductdetails();
+displayCounter();

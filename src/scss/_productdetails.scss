@@ -53,15 +53,6 @@
     }
   }
 
-  &__containerOfButtons {
-    display: flex;
-
-    @include mix.desktop {
-      display: flex;
-      margin-left: 40px;
-    }
-  }
-
   &__image {
     width: 160px;
     padding: 10px;
@@ -139,10 +130,7 @@
 
     @include mix.desktop {
       scale: 1;
-      margin-left: 20px;
+      margin-left: 40px;
     }
   }
-}
-.productTotalText {
-  color: black;
 }

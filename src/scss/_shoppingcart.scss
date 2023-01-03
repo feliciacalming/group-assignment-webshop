@@ -8,7 +8,7 @@
 }
 
 .headingInCart {
-  margin-top: 70px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,6 +30,7 @@
   flex-direction: column;
   background-color: var.$product-background;
   width: 70%;
+  padding: 20px;
   margin: 2px;
   color: black;
 
@@ -45,7 +46,9 @@
   }
 
   &__price {
-    margin: 0;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   &__amount {
@@ -55,6 +58,11 @@
   &__buttonMinus,
   &__buttonPlus {
     @include mix.amountButtons;
+  }
+
+  &__buttonClear,
+  &__buttonCheckout {
+    @include mix.buttons;
   }
 }
 
