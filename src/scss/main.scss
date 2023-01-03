@@ -231,7 +231,8 @@ body {
 
 /* content */
 .content {
-  background: url(../assets/bg-index.jpg) no-repeat center center fixed;
+  background: url(../assets/bg-index.jpg) no-repeat center center
+    fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -272,36 +273,49 @@ body {
 /* footer */
 footer {
   color: var.$color-secondary-light;
-  width: 100%;
   background-color: red;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   color: #fff;
+  justify-content: center;
 
   .contact {
     display: block;
     flex-direction: column;
-    padding: 10px;
-    margin: 0;
+    margin-right: 40px;
+    margin-top: 15px;
+    padding-bottom: 10px;
+
+    @include mix.desktop {
+      margin-left: 0px;
+      margin-right: 40px;
+    }
 
     p,
-    h3,
     h4 {
-      padding: 0;
+      font-family: var.$text-primary;
+      padding: 1.4;
       margin: 0;
     }
   }
   .social {
-    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 10px;
+
+    @include mix.desktop {
+      text-align: center;
+      margin-left: 350px;
+    }
+
     p {
       margin: 4px;
     }
   }
 }
+
 /* end footer */
 
 /* Offer Slider */
