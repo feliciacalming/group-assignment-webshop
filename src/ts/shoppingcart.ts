@@ -93,6 +93,7 @@ function displayProductsInCart() {
         localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
       }
       displayProductsInCart();
+      displayCounter();
 
       // subtractFromCart(listFromLocalStorage[i]);
       //increaseQuantityByOne(listFromLocalStorage[i].product);
