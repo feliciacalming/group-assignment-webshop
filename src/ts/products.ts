@@ -123,11 +123,11 @@ useFilterBtn.addEventListener("click", () => {
   displayProducts(filteredProducts);
 });
 
-// clearFilterBtn.addEventListener("click", () => {
-//   filteredProducts.splice(0, filteredProducts.length);
-//   toggleFilter();
-//   displayProducts(productItems);
-// });
+clearFilterBtn.addEventListener("click", () => {
+  filteredProducts.splice(0, filteredProducts.length);
+  toggleFilter();
+  displayProducts(productItems);
+});
 
 filterHeading.appendChild(filterTitle);
 filterHeading.appendChild(exitBtn);
