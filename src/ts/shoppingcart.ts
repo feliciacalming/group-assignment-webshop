@@ -93,12 +93,15 @@ function displayProductsInCart() {
         localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
       }
       displayProductsInCart();
-      displayCounter();
 
       // subtractFromCart(listFromLocalStorage[i]);
       //increaseQuantityByOne(listFromLocalStorage[i].product);
     });
   }
+  displayCounter();
+  displayProductsSum();
+  displayClearCartButton();
+  displayToCheckout();
 }
 
 function displayProductsSum() {
@@ -165,8 +168,8 @@ function displayToCheckout() {
 
 // displayProductsInCart(listFromLocalStorage);
 displayProductsInCart();
-displayProductsSum();
 displayCounter();
-displayClearCartButton();
-displayToCheckout();
+// displayProductsSum();
+// displayClearCartButton();
+// displayToCheckout();
 console.log("This is the total: ", sum);
