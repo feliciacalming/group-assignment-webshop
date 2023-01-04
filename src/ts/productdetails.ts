@@ -51,6 +51,8 @@ export function displayProductdetails() {
 
       productDescribtion.innerText = productItems[i].description;
       productDetailTitle.innerHTML = productItems[i].name;
+      productDetailPrice.innerHTML =
+        productItems[i].price.toString() + " kr";
 
       (document.querySelector("main") as HTMLElement).appendChild(
         productDetailContainer

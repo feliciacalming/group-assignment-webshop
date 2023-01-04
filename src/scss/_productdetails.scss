@@ -79,7 +79,6 @@
     @include mix.desktop {
       scale: 1.4;
       align-self: flex-end;
-      padding-left: 5px;
       margin-bottom: 20px;
       margin-left: 80px;
       border-bottom: 1px solid black;
@@ -104,17 +103,15 @@
   }
 
   &__price {
-    margin-right: 102px;
-    margin-bottom: 10px;
+    margin-left: 50px;
+    margin-bottom: 12px;
     color: black;
 
     @include mix.desktop {
       margin-top: 30px;
-      margin-bottom: 20px;
-      scale: 1;
-      align-self: flex-end;
-      margin-left: 70px;
-      padding-left: 5px;
+      margin-bottom: 12px;
+      scale: 1.3;
+      margin-left: 64px;
       color: black;
     }
   }
