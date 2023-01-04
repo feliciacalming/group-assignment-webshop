@@ -34,11 +34,12 @@
 //vanliga knappar
 @mixin buttons {
   border-style: none;
-  padding: 3px 10px 3px 10px;
-  border-radius: 5px;
+  padding: 5px;
+  border-radius: 10px;
   color: white;
   background-color: rgb(227, 95, 115);
   cursor: pointer;
+  transition: 300ms;
   &:hover {
     background-color: rgb(255, 119, 139);
   }

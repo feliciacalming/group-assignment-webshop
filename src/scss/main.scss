@@ -7,17 +7,16 @@
 @use "mixins" as mix;
 @use "variables" as var;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 html {
   scroll-behavior: smooth;
-  background-color: var.$dark-red;
 }
 //här kan vi ha all 'main' styling, dvs all styling som är statisk och likadan på alla html-sidor
 body {
   margin: 0;
   color: white;
-  font-family: 'Roboto', sans-serif!important;
+  font-family: "Roboto", sans-serif;
   // height: 100vh;
   display: flex;
   flex-direction: column; // denna styling är bara för att jag ska se vart footer hamnar

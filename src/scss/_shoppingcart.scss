@@ -69,8 +69,8 @@
   &__buttonClear,
   &__buttonCheckout {
     @include mix.buttons;
-    width: 150px;
-    height: 20px;
+    width: 130px;
+    height: 30px;
     font-size: 15px;
   }
 }
@@ -88,6 +88,10 @@
 .productsClearContainer {
   margin-bottom: 20px;
   width: max-content;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  display: flex;
+  column-gap: 20px;
 }
 
 .productTotalText {
