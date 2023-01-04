@@ -79,30 +79,29 @@
 
 .offer {
   margin: 0;
-  background-color: #fcfcfcf2;
   padding-bottom: 50px;
-  height: 84vh;
+  height: 85.5vh;
+  background-color: #00622ecc;
 
   @include mix.desktop {
   }
 
   &__info {
-    background-color: white;
+    background-color: #00622e;
     padding-top: 10px;
     padding-bottom: 10px;
     margin-bottom: 120px;
-    border-bottom: 1px solid black;
   }
 
   &__heading {
     font-family: var.$text-secondary;
-    color: var.$color-secondary-dark;
+    color: white;
     margin: 0;
   }
 
   &__paragraph {
     margin: 0;
-    color: black;
+    color: white;
     font-style: italic;
     font-size: 13px;
     font-weight: bold;
@@ -113,6 +112,8 @@
     @include mix.desktop {
       width: 40%;
       display: inline-block;
+      margin-right: 25px;
+      margin-left: 25px;
     }
   }
 }
