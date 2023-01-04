@@ -12,15 +12,13 @@
 html {
   scroll-behavior: smooth;
 }
-//här kan vi ha all 'main' styling, dvs all styling som är statisk och likadan på alla html-sidor
 body {
   margin: 0;
   color: white;
   font-family: "Roboto", sans-serif;
   // height: 100vh;
   display: flex;
-  flex-direction: column; // denna styling är bara för att jag ska se vart footer hamnar
-  //justify-content: end;
+  flex-direction: column;
 
   a,
   a:visited,
@@ -29,15 +27,6 @@ body {
     color: inherit;
     text-decoration: inherit;
   }
-  // button {
-  //   background: none;
-  //   color: inherit;
-  //   border: none;
-  //   padding: 0;
-  //   font: inherit;
-  //   cursor: pointer;
-  //   outline: inherit;
-  // }
 }
 
 /* Header */
@@ -46,7 +35,7 @@ body {
 }
 .phone-nav {
   color: var.$color-secondary-light;
-  position: relative; //ändrar från absolute till relative
+  position: relative;
   top: 0px;
   width: 100%;
   padding-bottom: 10px;
@@ -102,7 +91,6 @@ body {
       top: 63px;
       z-index: 2;
 
-      /****** PROVAR HEADER & LÄNKAR *****/
       @include mix.desktop {
         display: none;
       }
@@ -166,7 +154,7 @@ body {
       justify-content: space-between;
       margin-bottom: 35px;
 
-      /******* DÖLJER HAMBURGERMENYN I DESKTOP *******/
+      /*** DÖLJER HAMBURGERMENYN I DESKTOP ***/
       @include mix.desktop {
         display: none;
       }
@@ -220,7 +208,6 @@ body {
 
   @include mix.desktop {
     display: inline;
-    // position: absolute;
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -229,133 +216,6 @@ body {
     margin-top: 40px;
     margin: 0;
     padding: 0;
-  }
-}
-
-/* content */
-.startpagecontent {
-  background: url(../assets/bg-index.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  // align-items: center;
-  flex-direction: column;
-  text-align: center;
-
-  &__welcome {
-    height: 77vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 100px;
-
-    @include mix.desktop {
-      margin: 0;
-      height: 78vh;
-    }
-  }
-
-  &__heading {
-    font-size: 32px;
-    font-family: var.$text-secondary;
-    width: 90%;
-    letter-spacing: 2px;
-    margin-top: 100px;
-    margin-bottom: 15px;
-
-    @include mix.desktop {
-      // scale: 1.5;
-      font-size: 50px;
-    }
-  }
-
-  &__paragraph {
-    font-size: 14px;
-    // letter-spacing: 0.2px;
-    margin: 0 25px;
-
-    @include mix.desktop {
-      // scale: 1.5;
-      font-size: 17px;
-      width: 55%;
-    }
-  }
-
-  h5 {
-    margin: 20px auto;
-    letter-spacing: 1px;
-    width: 90%;
-  }
-  button {
-    background-color: rgba(0, 58, 27, 0.88);
-    padding: 10px;
-    border-style: none;
-    border: 1px solid rgba(71, 131, 60, 0.178);
-    color: white;
-    border-radius: 20px;
-    width: 160px;
-    margin: 0 auto;
-    transition: 300ms;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    &:hover {
-      transform: scale(1.05);
-    }
-    margin-top: 30px;
-    margin-bottom: 30px;
-
-    @include mix.desktop {
-      // scale: 1.1;
-    }
-  }
-  // .offer {
-  //   @include mix.offer-panel;
-  //   margin: 40px auto 10px;
-  // }
-}
-
-.offer {
-  margin: 0;
-  background-color: #fcfcfcf2;
-  padding-bottom: 50px;
-  height: 84vh;
-
-  @include mix.desktop {
-  }
-
-  &__info {
-    background-color: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 120px;
-    border-bottom: 1px solid black;
-  }
-
-  &__heading {
-    font-family: var.$text-secondary;
-    color: var.$color-secondary-dark;
-    margin: 0;
-  }
-
-  &__paragraph {
-    margin: 0;
-    color: black;
-    font-style: italic;
-    font-size: 13px;
-    font-weight: bold;
-  }
-
-  &__container {
-    @include mix.offer-panel;
-
-    // margin: 40px auto 10px;
-    @include mix.desktop {
-      width: 40%;
-      display: inline-block;
-    }
   }
 }
 

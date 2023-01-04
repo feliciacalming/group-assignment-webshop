@@ -1,2 +1,118 @@
 @use "mixins" as mix;
 @use "variables" as var;
+
+/* content */
+.startpagecontent {
+  background: url(../assets/bg-index.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+
+  &__welcome {
+    height: 77vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+
+    @include mix.desktop {
+      margin: 0;
+      height: 78vh;
+    }
+  }
+
+  &__heading {
+    font-size: 32px;
+    font-family: var.$text-secondary;
+    width: 90%;
+    letter-spacing: 2px;
+    margin-top: 100px;
+    margin-bottom: 15px;
+
+    @include mix.desktop {
+      font-size: 50px;
+    }
+  }
+
+  &__paragraph {
+    font-size: 14px;
+    margin: 0 25px;
+
+    @include mix.desktop {
+      font-size: 17px;
+      width: 55%;
+    }
+  }
+
+  h5 {
+    margin: 20px auto;
+    letter-spacing: 1px;
+    width: 90%;
+  }
+  button {
+    background-color: rgba(229, 50, 50, 0.957);
+    padding: 10px;
+    border-style: none;
+    border: 1px solid rgba(71, 131, 60, 0.178);
+    color: white;
+    border-radius: 20px;
+    width: 160px;
+    margin: 0 auto;
+    transition: 300ms;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.05);
+    }
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    @include mix.desktop {
+    }
+  }
+}
+
+.offer {
+  margin: 0;
+  background-color: #fcfcfcf2;
+  padding-bottom: 50px;
+  height: 84vh;
+
+  @include mix.desktop {
+  }
+
+  &__info {
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 120px;
+    border-bottom: 1px solid black;
+  }
+
+  &__heading {
+    font-family: var.$text-secondary;
+    color: var.$color-secondary-dark;
+    margin: 0;
+  }
+
+  &__paragraph {
+    margin: 0;
+    color: black;
+    font-style: italic;
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  &__container {
+    @include mix.offer-panel;
+    @include mix.desktop {
+      width: 40%;
+      display: inline-block;
+    }
+  }
+}
