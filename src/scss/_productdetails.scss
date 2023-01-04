@@ -1,6 +1,10 @@
 @use "mixins" as mix;
 @use "variables" as var;
 
+.productdetailspage-container {
+  background-color: white;
+}
+
 .productdetailpage-container {
   display: flex;
   flex-direction: column;
@@ -66,7 +70,7 @@
     margin-left: 15px;
 
     &:hover {
-      background-color: rgba(254, 221, 221, 0.702);
+      background-color: rgba(238, 238, 238, 0.702);
     }
 
     @include mix.desktop {
