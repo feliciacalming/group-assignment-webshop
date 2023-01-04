@@ -1,9 +1,6 @@
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
-import {
-  displayCounter,
-  listFromLocalStorage,
-} from "./functions.ts/cartFunctions";
+import { displayCounter } from "./functions.ts/cartFunctions";
 import { ProductsInCart } from "./models/ProductsInCart";
 import { addToCart } from "../ts/functions.ts/cartFunctions";
 
@@ -15,16 +12,12 @@ export function displayProductdetails() {
 
   for (let i = 0; i < productItems.length; i++) {
     if (productItems[i].id.toString() === newId) {
-      let containerOfImg: HTMLDivElement =
-        document.createElement("div");
-      let containerOfInfo: HTMLDivElement =
-        document.createElement("div");
+      let containerOfImg: HTMLDivElement = document.createElement("div");
+      let containerOfInfo: HTMLDivElement = document.createElement("div");
       let productDetailContainer: HTMLDivElement =
         document.createElement("div");
-      let productDetailTitle: HTMLHeadingElement =
-        document.createElement("h5");
-      let productDetailImage: HTMLImageElement =
-        document.createElement("img");
+      let productDetailTitle: HTMLHeadingElement = document.createElement("h5");
+      let productDetailImage: HTMLImageElement = document.createElement("img");
       let productDescribtion: HTMLParagraphElement =
         document.createElement("p");
       let productDetailPrice: HTMLParagraphElement =
@@ -33,9 +26,7 @@ export function displayProductdetails() {
       let productDetailButton: HTMLButtonElement =
         document.createElement("button");
 
-      productDetailButton.classList.add(
-        "productdetail__buttonAddToCart"
-      );
+      productDetailButton.classList.add("productdetail__buttonAddToCart");
 
       productDetailContainer.classList.add("productdetail");
       productDetailTitle.classList.add("productdetail__title");
@@ -70,6 +61,7 @@ export function displayProductdetails() {
 
       productDetailButton.addEventListener("click", () => {
         addToCart(productItems[i]);
+        displayCounter();
       });
     }
   }

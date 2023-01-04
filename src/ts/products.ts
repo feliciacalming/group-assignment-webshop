@@ -87,6 +87,7 @@ function displayProducts(productItems: ChristmasBauble[]) {
 
     productButton.addEventListener("click", () => {
       addToCart(productItems[i]);
+      displayCounter();
     });
   }
 }
