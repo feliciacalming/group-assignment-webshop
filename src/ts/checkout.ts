@@ -3,6 +3,14 @@ import { ProductsInCart } from "./models/ProductsInCart";
 
 let listFromLocalStorage: ProductsInCart[] = [];
 listFromLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
+let emptyBasket = document.getElementById("empty-basket") as HTMLDivElement;
+
+if(listFromLocalStorage.length == 0){
+  emptyBasket.style.display = "block";
+}
+else{
+  emptyBasket.style.display = "none";
+}
 
 let sum: number = 0;
 
@@ -103,7 +111,23 @@ function displayPaymentGateway() {
 
   function callback() {
     setTimeout(function () {
-      alert("Köpet har genomförts!");
+      let alertContainer: HTMLDivElement = document.createElement("div");
+      let alertMsg: HTMLParagraphElement = document.createElement("p");
+
+      alertContainer.classList.add("alert-container");
+      alertMsg.classList.add("alert-msg");
+
+      alertMsg.innerText = "Köpet har genomförts!";
+
+      alertContainer.appendChild(alertMsg);
+
+      (document.querySelector(".content") as HTMLElement).appendChild(
+        alertContainer
+      );
+      setTimeout(function () {
+        window.localStorage.clear();
+        window.location.reload();
+      }, 5000);
     }, 500);
   }
 }
