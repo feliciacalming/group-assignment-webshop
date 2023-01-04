@@ -99,7 +99,6 @@ function displayProductsInCart() {
     });
   }
   displayCounter();
-  displayProductsSum();
   displayClearCartButton();
   displayToCheckout();
 }
@@ -169,7 +168,7 @@ function displayToCheckout() {
 // displayProductsInCart(listFromLocalStorage);
 displayProductsInCart();
 displayCounter();
-// displayProductsSum();
+displayProductsSum();
 // displayClearCartButton();
 // displayToCheckout();
 console.log("This is the total: ", sum);

@@ -122,6 +122,8 @@ exitBtn.addEventListener("click", () => {
 useFilterBtn.addEventListener("click", () => {
   toggleFilter();
   displayProducts(filteredProducts);
+  assortmentAmount.innerHTML =
+    "Visar " + filteredProducts.length.toString() + " produkter";
 });
 
 clearFilterBtn.addEventListener("click", () => {
