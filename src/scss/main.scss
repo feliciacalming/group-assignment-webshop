@@ -14,7 +14,7 @@ body {
   margin: 0;
   color: white;
   font-family: "Roboto", sans-serif;
-  height: 100vh;
+  // height: 100vh;
   display: flex;
   flex-direction: column; // denna styling är bara för att jag ska se vart footer hamnar
   //justify-content: end;
@@ -230,42 +230,117 @@ body {
 }
 
 /* content */
-.content {
+.startpagecontent {
   background: url(../assets/bg-index.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  // align-items: center;
+  flex-direction: column;
   text-align: center;
-  h1 {
-    margin: 0 auto;
+
+  &__welcome {
+    height: 77vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+  }
+
+  &__heading {
+    font-size: 32px;
+    font-family: var.$text-secondary;
     width: 90%;
     letter-spacing: 2px;
-    // margin-top: 80px;
-    margin-bottom: 20px;
+    margin-top: 100px;
+    margin-bottom: 15px;
+
+    @include mix.desktop {
+      // scale: 1.5;
+      font-size: 50px;
+    }
   }
+
+  &__paragraph {
+    font-size: 14px;
+    // letter-spacing: 0.2px;
+    margin: 0 25px;
+
+    @include mix.desktop {
+      // scale: 1.5;
+      font-size: 20px;
+      width: 55%;
+    }
+  }
+
   h5 {
     margin: 20px auto;
     letter-spacing: 1px;
     width: 90%;
   }
-  a {
-    background-color: red;
+  button {
+    background-color: rgba(0, 58, 27, 0.88);
     padding: 10px;
+    border-style: none;
+    border: 1px solid rgba(71, 131, 60, 0.178);
+    color: white;
     border-radius: 20px;
     width: 160px;
     margin: 0 auto;
     transition: 300ms;
     letter-spacing: 0.5px;
+    cursor: pointer;
     &:hover {
       transform: scale(1.05);
     }
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    @include mix.desktop {
+      // scale: 1.1;
+    }
   }
-  .offer {
+  // .offer {
+  //   @include mix.offer-panel;
+  //   margin: 40px auto 10px;
+  // }
+}
+
+.offer {
+  margin: 0;
+  background-color: #fcfcfcf2;
+  padding-bottom: 50px;
+  height: 84vh;
+
+  &__info {
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 120px;
+    border-bottom: 1px solid black;
+  }
+
+  &__heading {
+    font-family: var.$text-secondary;
+    color: var.$color-secondary-dark;
+    margin: 0;
+  }
+
+  &__paragraph {
+    margin: 0;
+    color: black;
+    font-style: italic;
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  &__container {
     @include mix.offer-panel;
+
+    // margin: 40px auto 10px;
   }
 }
 
@@ -326,8 +401,7 @@ footer {
   color: var.$color-secondary-light;
   // position: relative;
   // margin-top: 72px;
-  background-color: #f86b6b;
-
+  background-color: rgba(242, 241, 241, 0.275);
   @include mix.desktop {
     margin: 0;
     padding: 0;

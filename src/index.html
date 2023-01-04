@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--ikoner bootstrap-->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
     <!-- Fontawesome icons -->
     <script
       src="https://kit.fontawesome.com/62ffc96575.js"
-      crossorigin="anonymous"></script>
+      crossorigin="anonymous"
+    ></script>
     <script src="ts/main.ts" defer type="module"></script>
     <link href="./scss/main.scss" rel="stylesheet" />
     <title>Home</title>
@@ -21,9 +21,7 @@
   <body>
     <div class="phone-nav">
       <a href="#"><h1>JULKUL</h1></a>
-      <a href="shoppingcart.html"
-        ><i class="fa-solid fa-cart-shopping"></i
-      ></a>
+      <a href="shoppingcart.html"><i class="fa-solid fa-cart-shopping"></i></a>
       <!-- Länkar för desktop: -->
       <ul id="desktop-nav">
         <li><a href="products.html">Produkter</a></li>
@@ -49,29 +47,49 @@
       </div>
     </div>
 
-    <div class="content">
+    <div class="startpagecontent">
       <!-- provar lägga erbjudandetexten här istället -->
       <div class="wrapper">
         <div class="marquee">
           <p>
-            FRI FRAKT GÄLLER FRAM TILL JULDAGEN - BESTÄLL INNAN DEN 25
-            - PASSA PÅ ATT KÖPA NU
+            Fri frakt gäller fram till juldagen - beställ innan den 25 - passa
+            på att köpa nu!
           </p>
         </div>
       </div>
-      <h1>VÄLKOMMEN TILL JULKUL</h1>
 
-      <h2>NÅGRA AV VÅRA ERBJUDANDEN</h2>
-      <div class="offer">
-        <h2>TONS OF TREATS</h2>
-        <img src="../src/assets/offer.png" draggable="false"OFFER">
-      </div>
-      <div class="offer">
-        <h2>XMAS SPREE</h2>
-        <img src="../src/assets/offer2.png" draggable="false"OFFER">
-      </div>
+      <section class="startpagecontent__welcome">
+        <h1 class="startpagecontent__heading">VÄLKOMMEN TILL JULKUL</h1>
 
-      <a href="products.html">TILL SORTIMENT</a>
+        <p class="tartpagecontent__paragraph">
+          Vi är Sveriges ledande återförsäljare inom julgranskulor. Ta en titt
+          bland våra exklusiva julkulor och hitta din favorit! Just nu har vi
+          flera härliga erbjudanden!
+        </p>
+
+        <a href="products.html"
+          ><button type="button" class=".content__button">
+            TILL SORTIMENT
+          </button></a
+        >
+      </section>
+
+      <section class="offer">
+        <article class="offer__info">
+          <h3 class="offer__heading">Veckans erbjudanden</h3>
+          <p class="offer__paragraph">
+            Gäller till den 25/12, så länge lagret räcker.
+          </p>
+        </article>
+        <div class="offer__container">
+          <h2>TONS OF TREATS</h2>
+          <img src="../src/assets/offer.png" draggable="false"OFFER">
+        </div>
+        <div class="offer__container">
+          <h2>XMAS SPREE</h2>
+          <img src="../src/assets/offer2.png" draggable="false"OFFER">
+        </div>
+      </section>
     </div>
 
     <footer>
