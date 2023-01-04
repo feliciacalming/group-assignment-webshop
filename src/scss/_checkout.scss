@@ -9,10 +9,9 @@
   background-size: cover;
   display: flex;
   justify-content: center;
-  // align-items: center;
   flex-direction: column;
   text-align: center;
-  .alert-container{
+  .alert-container {
     width: 200px;
     height: 50px;
     background: red;
@@ -27,46 +26,46 @@
     z-index: 10;
   }
   @-webkit-keyframes fadeOut {
-      0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}
-
-@-moz-keyframes fadeOut {
-      0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}
-
-@-o-keyframes fadeOut {
     0% {
-        opacity: 1;
+      opacity: 1;
     }
 
     100% {
-        opacity: 0;
+      opacity: 0;
     }
-}
+  }
 
-@keyframes fadeOut {
+  @-moz-keyframes fadeOut {
     0% {
-        opacity: 1;
+      opacity: 1;
     }
 
     100% {
-        opacity: 0;
+      opacity: 0;
     }
-}
-  #empty-basket{
-    @include mix.desktop{
+  }
+
+  @-o-keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+  #empty-basket {
+    @include mix.desktop {
       width: 60%;
     }
     background-color: var.$christmas-green;
@@ -76,26 +75,26 @@
     border-top-right-radius: 25px;
     z-index: 1;
   }
-  .productsContainer{
-      @include mix.desktop{
-        position: relative;
-        display: flex;
-        flex-flow: row wrap;
-        width: 60%;
-        column-gap: 25px;
-        row-gap: 25px;
-        z-index: 10;
-      }
-      flex-direction: column;
-      background-color: var.$christmas-green;
-      width: 90%;
-      margin: 25px auto 0 auto;
-      color: white;
-      border-top-right-radius: 25px;
-      border-top-left-radius: 25px;
-      height: auto;
+  .productsContainer {
+    @include mix.desktop {
+      position: relative;
+      display: flex;
+      flex-flow: row wrap;
+      width: 60%;
+      column-gap: 25px;
+      row-gap: 25px;
+      z-index: 10;
+    }
+    flex-direction: column;
+    background-color: var.$christmas-green;
+    width: 90%;
+    margin: 25px auto 0 auto;
+    color: white;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    height: auto;
     .productInCartCheckout {
-      @include mix.desktop{
+      @include mix.desktop {
         width: 20%;
         margin-left: 30px;
         margin-right: 0px;
@@ -111,18 +110,18 @@
       &__image {
         width: 100px;
       }
-    
+
       &__title {
         margin-top: 15px;
         margin-bottom: 5;
         font-family: var.$text-secondary;
       }
-    
+
       &__price {
         margin: 0;
       }
 
-      &__amount{
+      &__amount {
         background-color: #fff;
         padding: 0px 5px 0px 5px;
         border-radius: 50%;
@@ -135,8 +134,9 @@
     column-gap: 10px;
     margin-bottom: 20px;
     margin-top: 5px;
-    .productInCartButton{
-      &__plus, &__minus{
+    .productInCartButton {
+      &__plus,
+      &__minus {
         @include mix.amountButtons;
       }
     }
@@ -191,7 +191,7 @@
       input[type="submit"] {
         margin-left: 10px;
       }
-      .purchase-button:hover{
+      .purchase-button:hover {
         cursor: pointer;
       }
       .cc {
@@ -229,7 +229,7 @@
       grid-area: ccv-text;
     }
     .submit-text {
-      @include mix.desktop{
+      @include mix.desktop {
         font-size: calc(2px + 1vw);
       }
       font-size: calc(10px + 1vw);

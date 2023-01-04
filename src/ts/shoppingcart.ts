@@ -1,13 +1,8 @@
-import { ChristmasBauble } from "./models/ChristmasBauble";
 import { ProductsInCart } from "./models/ProductsInCart";
 import { displayCounter } from "./functions.ts/cartFunctions";
-// import { addToCart, listToLocalStorage } from "./products";
-import { addToCart } from "../ts/functions.ts/cartFunctions";
 
 let listFromLocalStorage: ProductsInCart[] = [];
-// listFromLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
 let sum: number = 0;
-let amountOfProducts: number = 1;
 
 function displayProductsInCart() {
   let listFromLocalStorage = JSON.parse(
@@ -16,8 +11,6 @@ function displayProductsInCart() {
   listFromLocalStorage = listFromLocalStorage.map((product: ProductsInCart) => {
     return new ProductsInCart(product.amount, product.product);
   });
-
-  console.log(listFromLocalStorage);
 
   (document.querySelector("main") as HTMLElement).innerHTML = "";
 
@@ -72,19 +65,13 @@ function displayProductsInCart() {
     );
 
     productInCartButtonPlus.addEventListener("click", () => {
-      console.log("You clicked on + ");
-
       listFromLocalStorage[i].amount++;
       localStorage.setItem("product", JSON.stringify(listFromLocalStorage));
       displayProductsInCart();
       displayProductsSum();
-
-      // addToCart(listFromLocalStorage[i].product);
-      //increaseQuantityByOne(listFromLocalStorage[i].product);
     });
 
     productInCartButtonMinus.addEventListener("click", () => {
-      console.log("You clicked on - ");
       listFromLocalStorage[i].amount--;
       localStorage.setItem("product", JSON.stringify(listFromLocalStorage));
       if (listFromLocalStorage[i].amount === 0) {
@@ -95,9 +82,6 @@ function displayProductsInCart() {
       }
       displayProductsInCart();
       displayProductsSum();
-
-      // subtractFromCart(listFromLocalStorage[i]);
-      //increaseQuantityByOne(listFromLocalStorage[i].product);
     });
   }
   displayCounter();
@@ -168,10 +152,6 @@ function displayToCheckout() {
   });
 }
 
-// displayProductsInCart(listFromLocalStorage);
 displayProductsInCart();
 displayCounter();
 displayProductsSum();
-// displayClearCartButton();
-// displayToCheckout();
-console.log("This is the total: ", sum);

@@ -1,8 +1,6 @@
 import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
-import { ProductsInCart } from "./models/ProductsInCart";
 import { colors, size } from "./models/filterOptions";
-import { displayProductdetails } from "./productdetails";
 import { addToCart, displayCounter } from "./functions.ts/cartFunctions";
 import { toggleFilter } from "./functions.ts/filterFunctions";
 
@@ -114,6 +112,12 @@ clearFilterBtn.innerHTML = "Rensa filter";
 
 let filteredProducts: ChristmasBauble[] = [];
 
+filterHeading.appendChild(filterTitle);
+filterHeading.appendChild(exitBtn);
+filterButtonsContainer.appendChild(useFilterBtn);
+filterButtonsContainer.appendChild(clearFilterBtn);
+filterContainer.appendChild(filterButtonsContainer);
+
 // Toggle för Filter-funktionen. När man klickar på X i filter-rutan får den display: none igen, och produktsidan display: block igen.
 exitBtn.addEventListener("click", () => {
   toggleFilter();
@@ -132,13 +136,7 @@ clearFilterBtn.addEventListener("click", () => {
   displayProducts(productItems);
 });
 
-filterHeading.appendChild(filterTitle);
-filterHeading.appendChild(exitBtn);
-filterButtonsContainer.appendChild(useFilterBtn);
-filterButtonsContainer.appendChild(clearFilterBtn);
-filterContainer.appendChild(filterButtonsContainer);
-
-//FÄRGFILTER.
+//filtrering på färg
 
 function displayColorOptions() {
   for (let i = 0; i < colors.length; i++) {
@@ -165,7 +163,6 @@ function displayColorOptions() {
               .includes(colorname.innerHTML.toLowerCase())
           ) {
             filteredProducts.push(productItems[i]);
-            console.log(filteredProducts);
           }
         }
       }
@@ -188,7 +185,7 @@ function displayColorOptions() {
   }
 }
 
-//STORLEKSFILTER.
+//filtrering på storlek
 
 function displaySizeOptions() {
   for (let i = 0; i < size.length; i++) {
@@ -207,17 +204,11 @@ function displaySizeOptions() {
     sizeNumber.innerHTML = size[i].size.toString();
 
     //eventlyssnare för checkboxen
-
     checkbox.addEventListener("click", () => {
       if (checkbox.checked === true) {
         for (let i = 0; i < productItems.length; i++) {
           if (sizeNumber.innerHTML === productItems[i].size.toString()) {
             filteredProducts.push(productItems[i]);
-
-            /* Ska lägga till en knapp för "Använd filter", och när man trycker på den ska den köra toggleFilter för att stänga
-             rutan samt displayProducts med filtrerade listan för att enbart visa de filtrerade produkterna på sidan */
-            // toggleFilter();
-            // displayProducts(filteredProducts);
           }
         }
       }
@@ -229,7 +220,6 @@ function displaySizeOptions() {
   }
 }
 
-//FILTRERINGSFUNKTION FÖR STORLEK
 displayCounter();
 displayProducts(productItems);
 displayColorOptions();

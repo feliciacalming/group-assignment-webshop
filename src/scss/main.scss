@@ -17,7 +17,6 @@ body {
   margin: 0;
   color: white;
   font-family: "Roboto", sans-serif;
-  // height: 100vh;
   display: flex;
   flex-direction: column;
 
@@ -271,8 +270,6 @@ body {
   max-width: 100%;
   overflow: hidden;
   color: var.$color-secondary-light;
-  // position: relative;
-  // margin-top: 72px;
   background-color: rgba(242, 241, 241, 0.535);
   @include mix.desktop {
     margin: 0;
@@ -315,8 +312,6 @@ body {
     transform: translate3d(-195%, 0, 0);
   }
 }
-
-/* Offer */
 
 /* Counter */
 .counter {

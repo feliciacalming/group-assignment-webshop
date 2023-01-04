@@ -1,7 +1,5 @@
-import { ChristmasBauble } from "./models/ChristmasBauble";
 import { productItems } from "./models/productItems";
 import { displayCounter } from "./functions.ts/cartFunctions";
-import { ProductsInCart } from "./models/ProductsInCart";
 import { addToCart } from "../ts/functions.ts/cartFunctions";
 
 export function displayProductdetails() {
@@ -42,8 +40,7 @@ export function displayProductdetails() {
 
       productDescribtion.innerText = productItems[i].description;
       productDetailTitle.innerHTML = productItems[i].name;
-      productDetailPrice.innerHTML =
-        productItems[i].price.toString() + " kr";
+      productDetailPrice.innerHTML = productItems[i].price.toString() + " kr";
 
       (document.querySelector("main") as HTMLElement).appendChild(
         productDetailContainer
