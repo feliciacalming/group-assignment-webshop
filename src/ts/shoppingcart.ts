@@ -5,7 +5,7 @@ import { displayCounter } from "./functions.ts/cartFunctions";
 import { addToCart } from "../ts/functions.ts/cartFunctions";
 
 let listFromLocalStorage: ProductsInCart[] = [];
-listFromLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
+// listFromLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
 let sum: number = 0;
 let amountOfProducts: number = 1;
 
@@ -77,6 +77,7 @@ function displayProductsInCart() {
       listFromLocalStorage[i].amount++;
       localStorage.setItem("product", JSON.stringify(listFromLocalStorage));
       displayProductsInCart();
+      displayProductsSum();
 
       // addToCart(listFromLocalStorage[i].product);
       //increaseQuantityByOne(listFromLocalStorage[i].product);
@@ -93,6 +94,7 @@ function displayProductsInCart() {
         localStorage.setItem("product", savedCart); //uppdaterar localstorage med den nya listan
       }
       displayProductsInCart();
+      displayProductsSum();
 
       // subtractFromCart(listFromLocalStorage[i]);
       //increaseQuantityByOne(listFromLocalStorage[i].product);
@@ -104,6 +106,7 @@ function displayProductsInCart() {
 }
 
 function displayProductsSum() {
+  listFromLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
   let sumAmount = 0;
   for (let i = 0; i < listFromLocalStorage.length; i++) {
     sumAmount +=
