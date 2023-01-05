@@ -5,10 +5,9 @@ let listFromLocalStorage: ProductsInCart[] = [];
 listFromLocalStorage = JSON.parse(localStorage.getItem("product") || "[]");
 let emptyBasket = document.getElementById("empty-basket") as HTMLDivElement;
 
-if(listFromLocalStorage.length == 0){
+if (listFromLocalStorage.length == 0) {
   emptyBasket.style.display = "block";
-}
-else{
+} else {
   emptyBasket.style.display = "none";
 }
 
@@ -140,8 +139,6 @@ function displayProductsInCart() {
     return new ProductsInCart(product.amount, product.product);
   });
 
-  console.log(listFromLocalStorage);
-
   (document.querySelector(".productsContainer") as HTMLElement).innerHTML = "";
 
   for (let i = 0; i < listFromLocalStorage.length; i++) {
@@ -193,18 +190,12 @@ function displayProductsInCart() {
     );
 
     productInCartButtonPlus.addEventListener("click", () => {
-      console.log("You clicked on + ");
-
       listFromLocalStorage[i].amount++;
       localStorage.setItem("product", JSON.stringify(listFromLocalStorage));
       displayProductsInCart();
-
-      // addToCart(listFromLocalStorage[i].product);
-      //increaseQuantityByOne(listFromLocalStorage[i].product);
     });
 
     productInCartButtonMinus.addEventListener("click", () => {
-      console.log("You clicked on - ");
       listFromLocalStorage[i].amount--;
       localStorage.setItem("product", JSON.stringify(listFromLocalStorage));
       if (listFromLocalStorage[i].amount === 0) {
